@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/yeo11200/jlob/static/css/main.d1b05096.chunk.css",
+    "main.js": "/yeo11200/jlob/static/js/main.c8a632d0.chunk.js",
+    "main.js.map": "/yeo11200/jlob/static/js/main.c8a632d0.chunk.js.map",
+    "runtime-main.js": "/yeo11200/jlob/static/js/runtime-main.9ae17f45.js",
+    "runtime-main.js.map": "/yeo11200/jlob/static/js/runtime-main.9ae17f45.js.map",
+    "static/js/2.4e0b116d.chunk.js": "/yeo11200/jlob/static/js/2.4e0b116d.chunk.js",
+    "static/js/2.4e0b116d.chunk.js.map": "/yeo11200/jlob/static/js/2.4e0b116d.chunk.js.map",
+    "index.html": "/yeo11200/jlob/index.html",
+    "precache-manifest.b24d2a96eb2ba0ee57a909781e380b1f.js": "/yeo11200/jlob/precache-manifest.b24d2a96eb2ba0ee57a909781e380b1f.js",
+    "service-worker.js": "/yeo11200/jlob/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/yeo11200/jlob/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.4e0b116d.chunk.js.LICENSE.txt": "/yeo11200/jlob/static/js/2.4e0b116d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/yeo11200/jlob/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9ae17f45.js",
+    "static/js/2.4e0b116d.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.c8a632d0.chunk.js"
+  ]
+}
