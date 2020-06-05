@@ -2,6 +2,6 @@
 
 
 ```npm
-npm deploy 
+npm run deploy
 // 배포 명렁어
 ```
