@@ -9,10 +9,13 @@ import {
 } from 'react-router-dom';
 
 import Header from './header/header';
+
+import Moduel from './content/moduel';
 function App() {
   return (
     <Route>
       <Header></Header>
+      <Moduel></Moduel>
     </Route>
   );
 }
