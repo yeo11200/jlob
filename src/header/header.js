@@ -8,9 +8,19 @@ class Header extends React.Component{
 
         this.state = {
             aa : 1,
+            firebaseConfig = {
+                apiKey: "AIzaSyAzdEI_b6zQ1DcmMsXj1qglZgtt3jEWlKk",
+                authDomain: "todolist-f3d53.firebaseapp.com",
+                databaseURL: "https://todolist-f3d53.firebaseio.com",
+                projectId: "todolist-f3d53",
+                storageBucket: "todolist-f3d53.appspot.com",
+                messagingSenderId: "963413121103",
+                appId: "1:963413121103:web:54c9fe1ed174adb119f23a",
+                measurementId: "G-00L2B594G4"
+              },
+        
         }
     }
-
     render(){
         return(
             <div>
