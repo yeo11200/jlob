@@ -36,3 +36,15 @@ npm install --save gh-pages
 // as를 사용하면 별명으로 사용할 수 있다.
 import { BrowerRouter as Router, Route, Link} from 'react-router-dom'
 ```
+
+
+##### 1. firebase를 가지고 웹 push를 만들 예정
+```npm 
+npm install --save firebase
+```
+
+```js
+import FireBase from 'firebase';
+
+FireBase.initializeApp();
+```
