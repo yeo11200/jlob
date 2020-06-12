@@ -37,6 +37,23 @@ npm install --save gh-pages
 import { BrowerRouter as Router, Route, Link} from 'react-router-dom'
 ```
 
+##### props의 타입을 지정해줄 경우 사용을 한다.
+```npm
+npm install --save prop-types
+
+or 
+
+yarn add prop-types
+```
+
+```js
+// class 명으로 사용할 경우
+// 아래처럼 class명 defaultProps를 해준다.
+// defaultProps는 props가 안넘어올 경우 기본적으로 담아주거나 타입을 지정할 때 사용을 한다.
+className.defaultProps = {
+    propName : propType.string;
+}
+```
 
 ##### 1. firebase를 가지고 웹 push를 만들 예정
 ```npm 
