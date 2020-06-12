@@ -8,16 +8,16 @@ class Header extends React.Component{
 
         this.state = {
             aa : 1,
-            firebaseConfig = {
-                apiKey: "AIzaSyAzdEI_b6zQ1DcmMsXj1qglZgtt3jEWlKk",
-                authDomain: "todolist-f3d53.firebaseapp.com",
-                databaseURL: "https://todolist-f3d53.firebaseio.com",
-                projectId: "todolist-f3d53",
-                storageBucket: "todolist-f3d53.appspot.com",
-                messagingSenderId: "963413121103",
-                appId: "1:963413121103:web:54c9fe1ed174adb119f23a",
-                measurementId: "G-00L2B594G4"
-              },
+            // firebaseConfig = {
+            //     apiKey: "AIzaSyAzdEI_b6zQ1DcmMsXj1qglZgtt3jEWlKk",
+            //     authDomain: "todolist-f3d53.firebaseapp.com",
+            //     databaseURL: "https://todolist-f3d53.firebaseio.com",
+            //     projectId: "todolist-f3d53",
+            //     storageBucket: "todolist-f3d53.appspot.com",
+            //     messagingSenderId: "963413121103",
+            //     appId: "1:963413121103:web:54c9fe1ed174adb119f23a",
+            //     measurementId: "G-00L2B594G4"
+            //   },
         
         }
     }
@@ -36,10 +36,10 @@ class Header extends React.Component{
                         {/**
                          * Link는 URL를 넣을 때 사용한다.
                          */}
-                        <Link to="/zzzz2">zzzz</Link>
+                        <Link exact to="/about/aaaa">이력서</Link>
                     </li>
                     <li>
-                        <Link to="/zzzz3">zzzz</Link>
+                        <Link to="/blog">Blog 정보</Link>
                     </li>
                     <li>
                         <Link to="/zzzz4?:namea">zzzz</Link>

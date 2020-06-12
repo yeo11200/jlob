@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import { Profile, Blog } from './index';
 class moduel extends React.Component {
 
     constructor(props){
@@ -10,7 +10,6 @@ class moduel extends React.Component {
 
         }
     }
-
     render(){
         return(
             <div>
@@ -22,6 +21,8 @@ class moduel extends React.Component {
                 <Route path="/zzzz1" render={() => (
                     <h3>Render Test</h3>
                 )}></Route>
+                <Route path="/about/:name" component={Profile}></Route>
+                <Route path="/blog" component={ () => <Blog></Blog>}></Route>
             </div>
         )
     }
