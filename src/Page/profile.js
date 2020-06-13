@@ -15,19 +15,72 @@ export default class proFile extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className="container mt-3">
                 <div>
                     <span>항상 노력하는 지원자 신진섭입니다.</span>
                 </div>
 
-                <div>
-                    <dd>
-                        <p>
-                            안녕하세요. 신진섭입니다
-                            지금은 이력서 테스트 중입니다.
-                            {this.props.match.params.name}
-                        </p>
-                    </dd>
+                <div className="media border p-3">
+                    <dl>
+                        <dt>자기소개</dt>
+                        <dd>
+                            <p>
+                                안녕하세요. 신진섭입니다
+                                지금은 이력서 테스트 중입니다.
+                                {this.props.match.params.name}
+                            </p>
+                        </dd>
+                        <dt>프로젝트 경험</dt>
+                        <dd>
+                            <span>6. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <span>5. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <span>4. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <span>3. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <span>2. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <span>1. 프로젝트 경험</span>
+                            <div>
+                                <p>사용한 기술</p>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>발표</dt>
+                        <dd>
+                            1. 발표 제목
+                            <span> 발표 ppt url</span>
+                        </dd>
+                    </dl>
                 </div>
             </div>
         )

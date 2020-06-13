@@ -13,7 +13,7 @@ import Header from './header/header';
 import Moduel from './content/moduel';
 function App() {
   return (
-    <Route>
+    <Route className="container">
       <Header></Header>
       <Moduel></Moduel>
     </Route>

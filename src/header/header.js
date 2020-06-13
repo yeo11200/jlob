@@ -24,24 +24,24 @@ class Header extends React.Component{
     render(){
         return(
             <div>
-                <ul>
-                    <li>
+                <ul className="list-group list-group-horizontal">
+                    <li className="list-group-item">
                         {/** 
                          * exact를 사용하면 /일떄만 나오고 나머지는 안나온다. 
                          * 비슷한 url에 정확하게를 원한다면 exact를 사용한다.
                          */}
                         <Link exact to="/zzzz1">zzzz</Link>
                     </li>
-                    <li>
+                    <li className="list-group-item">
                         {/**
                          * Link는 URL를 넣을 때 사용한다.
                          */}
                         <Link exact to="/about/aaaa">이력서</Link>
                     </li>
-                    <li>
+                    <li className="list-group-item">
                         <Link to="/blog">Blog 정보</Link>
                     </li>
-                    <li>
+                    <li className="list-group-item">
                         <Link to="/zzzz4?:namea">zzzz</Link>
                     </li>
                 </ul>

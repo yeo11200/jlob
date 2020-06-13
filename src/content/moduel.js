@@ -22,7 +22,7 @@ class moduel extends React.Component {
                     <h3>Render Test</h3>
                 )}></Route>
                 <Route path="/about/:name" component={Profile}></Route>
-                <Route path="/blog" component={ () => <Blog></Blog>}></Route>
+                <Route path="/blog" component={ () => <Blog name="name"></Blog>}></Route>
             </div>
         )
     }

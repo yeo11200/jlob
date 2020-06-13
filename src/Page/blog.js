@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 
 class blog extends Component {
+
+    constructor(props){
+        super(props);
+    }
     render() {
         return (
             <div>
                 <div>
                     <dt>
+                        <dd>{this.props.name}</dd>
                         <dd>React</dd>
                         <dd>Express</dd>
                         <dd>FireBase</dd>
@@ -23,7 +28,7 @@ class blog extends Component {
 
 
 blog.propTypes = {
-
+    name:PropTypes.string = 'kk'
 };
 
 
