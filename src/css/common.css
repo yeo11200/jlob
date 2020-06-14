@@ -1,3 +1,16 @@
+/* header 영역 css */
 div > ul.header-ui { background-color: aquamarine;}
 div > ul.header-ui > li { list-style-type:none; display: inline; margin-left: 2rem;}
-div > ul.header-ui > li.on{background-color: beige; color: brown;}
+div > ul.header-ui > li.on{ background-color: beige; color: brown; }
+
+/* blog info 영역 css */
+div > div.blog-info > dl { background-color: grey; }
+div > div.blog-info > dl > dd { font-weight: 700; color: rgb(110, 103, 40); display: inline; margin-left: 2rem; }
+div > div.blog-info > dd > dd.on { background-color: lawngreen; font-weight: 1000; color: lemonchiffon; }
+div > div.blog-connenct > span { display: none; overflow: hidden; }
+div > div.blog-connenct > span.over { display: inline-block; overflow: scroll; }
+
+div > div.profile-info > div.profile-about-title { font-weight: 600; font-size: medium;}
+div > div.profile-info > ul.profile-menu > li { display: inline; margin-left: 1ex; }
+div > div.profile-info > div.profile-about-me { display: none; width: 700px; height: 200px; }
+div > div.profile-info > div.profile-about-me.on { display: block; width: 700px; height: 200px; }

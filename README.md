@@ -55,6 +55,29 @@ className.defaultProps = {
 }
 ```
 
+```html
+<!-- classname 작성시 {this.state.a ? 'a' : ''} -->
+<li className={this.state.classNamePush == 'zzzz' ? 'on' : ''}>
+
+<!-- 다중 className을 설정할 경우 -->
+<div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
+```
+
+```js
+// React에서 event를 발생할 경우
+// constructor = this.event.bind를 하거나
+// html에 function 안에 event를 넣어주면 된다
+    menuClickOn = function(menu){
+        console.log(menu);
+        this.setState({menuOn : menu})
+    }
+
+    <ul className="profile-menu">
+        <li onClick={ () => { this.menuClickOn('info')}}>자기소개서</li>
+        <li onClick={ () => { this.menuClickOn('project')}}>프로젝트경험</li>
+        <li onClick={ () => { this.menuClickOn('announce')}}>발표내용</li>
+    </ul>
+```
 ##### 1. firebase를 가지고 웹 push를 만들 예정
 ```npm 
 npm install --save firebase

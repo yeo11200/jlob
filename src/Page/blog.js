@@ -10,7 +10,7 @@ class blog extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className="blog-info">
                     <dl>
                         <dd>{this.props.name}</dd>
                         <dd>React</dd>
@@ -20,6 +20,10 @@ class blog extends Component {
                         <dd>AWS RDS</dd>
                         <dd>Git Hub</dd>
                     </dl>
+                </div>
+
+                <div className="blog-connenct">
+
                 </div>
             </div>
         );

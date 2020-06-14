@@ -27,8 +27,6 @@ class Header extends React.Component{
     headerClick = function(e) {
         console.log(e);
         this.setState({classNamePush : e});
-
-        console.log(this.state.classNamePush);
     }
 
     render(){
