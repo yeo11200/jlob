@@ -11,7 +11,7 @@ class blog extends Component {
         return (
             <div>
                 <div>
-                    <dt>
+                    <dl>
                         <dd>{this.props.name}</dd>
                         <dd>React</dd>
                         <dd>Express</dd>
@@ -19,7 +19,7 @@ class blog extends Component {
                         <dd>MariaDB</dd>
                         <dd>AWS RDS</dd>
                         <dd>Git Hub</dd>
-                    </dt>
+                    </dl>
                 </div>
             </div>
         );

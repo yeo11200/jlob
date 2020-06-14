@@ -15,12 +15,12 @@ export default class proFile extends React.Component {
 
     render(){
         return(
-            <div className="container mt-3">
+            <div className="profile-info">
                 <div>
                     <span>항상 노력하는 지원자 신진섭입니다.</span>
                 </div>
 
-                <div className="media border p-3">
+                <div>
                     <dl>
                         <dt>자기소개</dt>
                         <dd>

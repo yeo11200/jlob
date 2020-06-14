@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Link} from 'react-router-dom';
+import '../css/common.css';
 
 class Header extends React.Component{
 
@@ -8,6 +9,7 @@ class Header extends React.Component{
 
         this.state = {
             aa : 1,
+            classNamePush : null,
             // firebaseConfig = {
             //     apiKey: "AIzaSyAzdEI_b6zQ1DcmMsXj1qglZgtt3jEWlKk",
             //     authDomain: "todolist-f3d53.firebaseapp.com",
@@ -21,28 +23,36 @@ class Header extends React.Component{
         
         }
     }
+
+    headerClick = function(e) {
+        console.log(e);
+        this.setState({classNamePush : e});
+
+        console.log(this.state.classNamePush);
+    }
+
     render(){
         return(
             <div>
-                <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item">
+                <ul className="header-ui">
+                    <li className={this.state.classNamePush == 'zzzz' ? 'on' : ''}>
                         {/** 
                          * exact를 사용하면 /일떄만 나오고 나머지는 안나온다. 
                          * 비슷한 url에 정확하게를 원한다면 exact를 사용한다.
                          */}
-                        <Link exact to="/zzzz1">zzzz</Link>
+                        <Link exact to="/zzzz1" onClick={(e) => {this.headerClick ('zzzz')}}>zzzz</Link>
                     </li>
-                    <li className="list-group-item">
+                    <li className={this.state.classNamePush == 'about' ? 'on' : ''}>
                         {/**
                          * Link는 URL를 넣을 때 사용한다.
                          */}
-                        <Link exact to="/about/aaaa">이력서</Link>
+                        <Link exact to="/about/aaaa" onClick={(e) => {this.headerClick ('about')}}>이력서</Link>
                     </li>
-                    <li className="list-group-item">
-                        <Link to="/blog">Blog 정보</Link>
+                    <li className={this.state.classNamePush == 'blog' ? 'on' : ''}>
+                        <Link to="/blog" onClick={(e) => {this.headerClick ('blog')}}>Blog 정보</Link>
                     </li>
-                    <li className="list-group-item">
-                        <Link to="/zzzz4?:namea">zzzz</Link>
+                    <li className={this.state.classNamePush == 'zzzz4' ? 'on' : ''}>
+                        <Link to="/zzzz4?:namea" onClick={(e) => {this.headerClick ('zzzz4')}}>zzzz</Link>
                     </li>
                 </ul>
             </div>
