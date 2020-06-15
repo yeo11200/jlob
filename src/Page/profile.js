@@ -19,8 +19,17 @@ export default class proFile extends React.Component {
     }
 
     menuClickOn = function(menu){
-        console.log(menu);
-        this.setState({menuOn : menu})
+        let menuToggle = null;
+
+        // state 값을 받아와서 toggle 형태로 받아준다.
+        if(menu == 'info'){
+            menuToggle = (this.state.menuOn === 'info') ? '' : 'info';
+        }else if(menu === 'project'){
+            menuToggle = (this.state.menuOn === 'project') ? '' : 'project';
+        }else if(menu === 'announce'){
+            menuToggle = (this.state.menuOn === 'announce') ? '' : 'announce';
+        }
+        this.setState({menuOn : menuToggle});
     }
 
     render(){
@@ -31,9 +40,21 @@ export default class proFile extends React.Component {
                 </div>
                 
                 <ul className="profile-menu">
-                    <li onClick={ () => { this.menuClickOn('info')}}>자기소개서</li>
-                    <li onClick={ () => { this.menuClickOn('project')}}>프로젝트경험</li>
-                    <li onClick={ () => { this.menuClickOn('announce')}}>발표내용</li>
+                    <li onClick={ () => { this.menuClickOn('info')}}
+                        className={(this.state.menuOn === 'info' ? 'on' : '')}
+                    >
+                        자기소개서
+                    </li>
+                    <li onClick={ () => { this.menuClickOn('project')}}
+                        className={(this.state.menuOn === 'project' ? 'on' : '')}
+                    >
+                        프로젝트경험
+                    </li>
+                    <li onClick={ () => { this.menuClickOn('announce')}}
+                        className={(this.state.menuOn === 'announce' ? 'on' : '')}
+                    >
+                        발표내용
+                    </li>
                 </ul>
 
                 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
