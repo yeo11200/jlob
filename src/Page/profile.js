@@ -9,7 +9,7 @@ export default class proFile extends React.Component {
         
         console.log(props.match.params.name);
         this.state = {
-            menuOn :  '',
+            menuOn :  'info',
         }
     }
 
@@ -69,7 +69,7 @@ export default class proFile extends React.Component {
                         </dd>
                     </dl>
                 </div>
-                <div>
+                <div className={"profile-about-me " + (this.state.menuOn === 'project' ? 'on' : '')}>
                     <dl>
                         <dt>프로젝트 경험</dt>
                         <dd>
@@ -116,7 +116,7 @@ export default class proFile extends React.Component {
                         </dd>
                     </dl>
                 </div>
-                <div>
+                <div className={"profile-about-me " + (this.state.menuOn === 'announce' ? 'on' : '')}>
                     <dl>
                         <dt>발표</dt>
                         <dd>

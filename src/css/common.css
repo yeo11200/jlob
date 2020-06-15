@@ -17,5 +17,4 @@ div > div.profile-info > div.profile-about-title { font-weight: 600; font-size: 
 div > div.profile-info > ul.profile-menu > li { display: inline; margin-left: 1ex; }
 div > div.profile-info > div.profile-about-me { display: none; width: 700px; height: 200px; }
 div > div.profile-info > div.profile-about-me.on { display: block; width: 700px; height: 200px; 
-    -webkit-transition:width 2s, height 2s, background-color 2s, -webkit-transform 2s;
-    transition:width 2s, height 2s, background-color 2s, transform 2s;}
+border-width: 2px; border-color: #aaa; border: 3px;}
