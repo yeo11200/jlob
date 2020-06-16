@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+// 외부에 있는 React를 불러오기 위해서 사용을 한다.
+// 단 별칭을 지어주는게 좋다.
+import * as Fun from '../fun';
 export default class proFile extends React.Component {
 
     // 제일 먼저 시작될 함수
     constructor(props){
         super(props);
-        
+        console.log(Fun.a());
         console.log(props.match.params.name);
         this.state = {
             menuOn :  'info',
@@ -37,6 +39,7 @@ export default class proFile extends React.Component {
             <div className="profile-info">
                 <div className="profile-about-title">
                     <span>항상 노력하는 지원자 신진섭입니다.</span>
+                    <span>총경력 : {this.state.careerDate}</span>
                 </div>
                 
                 <ul className="profile-menu">
@@ -73,9 +76,49 @@ export default class proFile extends React.Component {
                     <dl>
                         <dt>프로젝트 경험</dt>
                         <dd>
-                            <span>6. 프로젝트 경험</span>
                             <div>
-                                <p>사용한 기술</p>
+                                <span>
+                                    7. 에듀서브 수업 마이그레이션
+                                    & React Native Web View
+                                </span>
+                            </div>
+                            <div>
+                                <span>2020.06 ~ ing</span>
+                            </div>
+                            <div>
+                                <span>
+                                    <dl>
+                                        <dt>php 7.2</dt>
+                                        <dt>angular 1.5</dt>
+                                        <dt>javascript</dt>
+                                        <dt>aws</dt>
+                                        <dt>mariaDB 10.5</dt>
+                                        <dt>React Native 0.61</dt>
+                                        <dt>Npm</dt>
+                                    </dl>
+                                </span>
+                                <p>프로젝트 내용</p>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div>
+                                <span>6. 에듀서브 커뮤니티 마이그레이션</span>
+                            </div>
+                            <div>
+                                <span>2020.01 ~ 2020.03</span>
+                            </div>
+                            <div>
+                                <span>
+                                    <dl>
+                                        <dt>php 7.2</dt>
+                                        <dt>angular 1.5</dt>
+                                        <dt>javascript</dt>
+                                        <dt>aws</dt>
+                                        <dt>mariaDB 10.5</dt>
+                                        <dt>git</dt>
+                                        <dt>C.I</dt>
+                                    </dl>
+                                </span>
                                 <p>프로젝트 내용</p>
                             </div>
                         </dd>
