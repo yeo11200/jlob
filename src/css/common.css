@@ -18,3 +18,13 @@ div > div.profile-info > ul.profile-menu > li { display: inline; margin-left: 1e
 div > div.profile-info > div.profile-about-me { display: none; width: 700px; height: 200px; }
 div > div.profile-info > div.profile-about-me.on { display: block; width: 700px; height: 200px; 
 border-width: 2px; border-color: #aaa; border: 3px;}
+
+/* div 영역잡고 선 스타일 내기 
+border: 선굵기, style, color
+border-radius : 외곽 선 둥근 모서리
+*/
+div > div.profile-info > div.profile-about-me.on > dl > dd > p > code {font-size: 10px; border-style: groove; border-color: dodgerblue;}
+div > div.profile-info > div.profile-about-me.on > dl > dd > div {
+    border: 1px outset gold; border-radius: 10px;
+    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
