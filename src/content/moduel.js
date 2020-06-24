@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Profile, Blog } from './index';
+import { Profile, Blog, Schedule } from './index';
 class moduel extends React.Component {
 
     constructor(props){
@@ -23,6 +23,7 @@ class moduel extends React.Component {
                 )}></Route>
                 <Route path="/about/:name" component={Profile}></Route>
                 <Route path="/blog" component={ () => <Blog name="name"></Blog>}></Route>
+                <Route path="/schedule" component={ () => <Schedule name="schedule"></Schedule>}></Route>
             </div>
         )
     }

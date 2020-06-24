@@ -72,6 +72,15 @@ export default class proFile extends React.Component {
                                 4. 남들보다 혹시 남과 같이 노력하는<br></br>
                             </div> 
                         </dd>
+                        <dd>
+                            <p>저는 <code>_ _ _ _ _</code> 팀원이 되고 싶습니다.</p>
+                            <div>
+                                1. 테스트 코드를 짤 짜는<br></br>
+                                2. 완성보다 버그를 줄이는<br></br>
+                                3. 책임감을 가지는<br></br>
+                                4. 남들보다 혹시 남과 같이 노력하는<br></br>
+                            </div> 
+                        </dd>
                     </dl>
                 </div>
                 <div className={"profile-about-me " + (this.state.menuOn === 'project' ? 'on' : '')}>
