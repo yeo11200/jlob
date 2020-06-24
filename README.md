@@ -83,6 +83,38 @@ import * as Fun from '../fun';
 // 복잡한 계산 공식이나 여러 곳에서 사용될 함수를 지정해서 사용한다.
 // *는 export 된 모든 것을 가지고온다
 ```
+
+```js
+componentWillMount() // react 컴포넌트가 실행할 때 제일먼저 실행, 주로 axios를 사용할 때 사용
+componentDidUpdate() // status or props 변경될 때 사용한다.
+
+
+/** axios를 사용하는 방법
+http의 메소드는
+get, post, put, delete
+Rest API의 http 메소드로 사용
+*/
+
+axios.get('/url', {param : { id : 1}}).then( (response) => {}).catch((e) => {});
+axios.post('/url', {a:1, b:2}).then( (response) => {}).catch((e) => {});
+
+or 
+
+axios({
+  method: 'get',
+  url: '/url',
+  responseType: 'stream'
+})
+
+axios({
+  method: 'post',
+  url: '/user/12345',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+});
+```
 ##### 1. firebase를 가지고 웹 push를 만들 예정
 ```npm 
 npm install --save firebase
