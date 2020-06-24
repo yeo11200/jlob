@@ -95,7 +95,8 @@ get, post, put, delete
 Rest API의 http 메소드로 사용
 */
 
-axios.get('/url', {param : { id : 1}}).then( (response) => {}).catch((e) => {});
+// params를 넣으면 url에 파라메터 데이터가 들어간다
+axios.get('/url', {params : { id : 1}}).then( (response) => {}).catch((e) => {});
 axios.post('/url', {a:1, b:2}).then( (response) => {}).catch((e) => {});
 
 or 
