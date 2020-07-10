@@ -20,7 +20,7 @@ export class schedule extends Component {
      * 원인은 파악 중
      */
     componentWillMount(){
-        axios.get('https://api.ip.pe.kr/').then((response) => {
+        axios.get('https://api.ip.pe.kr/', { params : {id : 1}}).then((response) => {
             console.log(response.data);
             this.setState({ 
                 getTitle: response.data

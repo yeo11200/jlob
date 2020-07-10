@@ -44,7 +44,7 @@ class Header extends React.Component{
                         {/**
                          * Link는 URL를 넣을 때 사용한다.
                          */}
-                        <Link exact to="/about/aaaa" onClick={(e) => {this.headerClick ('about')}}>이력서</Link>
+                        <Link exact to="/about" onClick={(e) => {this.headerClick ('about')}}>이력서</Link>
                     </li>
                     <li className={this.state.classNamePush == 'blog' ? 'on' : ''}>
                         <Link to="/blog" onClick={(e) => {this.headerClick ('blog')}}>Blog 정보</Link>

@@ -93,3 +93,22 @@ import FireBase from 'firebase';
 
 FireBase.initializeApp();
 ```
+
+#### 2. summernote 작업중
+```npm
+npm install --save react-summernote
+
+or 
+
+yarn add react-summernote
+```
+
+```npm
+// summer note는 jquery 기반으로 작동이 된다
+// jquery 플로그인 사용
+npm install --save jquery
+
+or 
+
+yarn add jquery
+```

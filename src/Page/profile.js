@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 // 외부에 있는 React를 불러오기 위해서 사용을 한다.
 // 단 별칭을 지어주는게 좋다.
 import * as Fun from '../fun';
+import ProfileWrite from './write/profileWrite';
 export default class proFile extends React.Component {
 
     // 제일 먼저 시작될 함수
@@ -12,12 +14,17 @@ export default class proFile extends React.Component {
         console.log(props.match.params.name);
         this.state = {
             menuOn :  'info',
+            profile : {},
         }
     }
 
     // component가 시작되기 전에 사용할 함수
     componentWillMount() {
         console.log(this.state.menuOn);
+
+        axios.get('localhost:8004/profile', {}).then((response) => {
+            console.log(response);
+        });
     }
 
     menuClickOn = function(menu){
@@ -179,6 +186,15 @@ export default class proFile extends React.Component {
                         </dd>
                     </dl>
                 </div>
+                {/**
+                 * 글쓰기 포맷
+                 * 글쓰기시 활성화 component
+                 * writer 클릭시 class 활성화 active
+                 */}
+
+                 <div>
+                     <ProfileWrite></ProfileWrite>
+                 </div>
             </div>
         )
     }
