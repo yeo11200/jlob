@@ -15,9 +15,12 @@ export class profileWrite extends Component {
      * 받아올땐 this.변수로 받아준다
      */
     proTyle = React.createRef();
+    proTitle = React.createRef();
+    proContent = React.createRef();
 
     submitProfile = function(){
         alert(this.proTyle.current.value);
+        alert(this.proTitle.current.value);
     }
     render() {
         return (
@@ -36,7 +39,7 @@ export class profileWrite extends Component {
                         <option value="career">경력증명서</option>
                     </select><br></br>
 
-                    <input ref="pro-title"></input>
+                    <input ref={this.proTitle}></input>
                     {/* <ReactSummernote
                         value="Default value"
                         options={{
