@@ -22,7 +22,7 @@ export default class proFile extends React.Component {
     componentWillMount() {
         console.log(this.state.menuOn);
 
-        axios.get('localhost:8004/profile', {}).then((response) => {
+        axios.get('http://localhost:8004/profile', {}).then((response) => {
             console.log(response);
         });
     }

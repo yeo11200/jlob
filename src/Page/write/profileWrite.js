@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactSummernote from 'react-summernote';
+import axios from 'axios';
 
 export class profileWrite extends Component {
 
@@ -21,6 +22,15 @@ export class profileWrite extends Component {
     submitProfile = function(){
         alert(this.proTyle.current.value);
         alert(this.proTitle.current.value);
+
+        var postData = {
+            'pro_type' : this.proTyle.current.value,
+            'pro_title' : this.proTitle.current.value
+        }
+
+        axios.post('http://localhost:8004/profile', postData).then(response => {
+
+        });
     }
     render() {
         return (

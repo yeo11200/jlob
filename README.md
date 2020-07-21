@@ -145,3 +145,16 @@ or
 
 yarn add jquery
 ```
+
+
+#### 3. cors
+```js
+/**
+ * express에서 cors를 했는데도 에러가 났다
+ * 확인은 해보니 localhost를 작성할 땐 http://를 꼭붙혀줘야한다
+ * 그렇게 cors를 벗어날수있다.
+*/
+axios.get('http://localhost:8004/profile', {}).then((response) => {
+    console.log(response);
+});
+```
