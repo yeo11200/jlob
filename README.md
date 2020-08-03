@@ -114,6 +114,9 @@ axios({
     lastName: 'Flintstone'
   }
 });
+
+// axios의 parameter은 url, data(객체), header(객체) 사용하면 된다.
+axios.get(url, params, header).then().catch(e) 
 ```
 ##### 1. firebase를 가지고 웹 push를 만들 예정
 ```npm 
