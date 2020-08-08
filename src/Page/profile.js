@@ -5,10 +5,14 @@ import axios from 'axios';
 // 단 별칭을 지어주는게 좋다.
 import * as Fun from '../fun';
 import ProfileWrite from './write/profileWrite';
+import * as COMMON from '../common';
+
 export default class proFile extends React.Component {
 
     // 제일 먼저 시작될 함수
     constructor(props){
+
+        console.log(COMMON.API_SERVER);
         super(props);
         console.log(Fun.a());
         console.log(props.match.params.name);
@@ -22,8 +26,18 @@ export default class proFile extends React.Component {
     componentWillMount() {
         console.log(this.state.menuOn);
 
-        axios.get('http://localhost:8004/profile', {}).then((response) => {
-            console.log(response);
+        axios.get(COMMON.API_SERVER + '/profile', {}).then((response) => {
+            var items = response.data;
+
+            console.log(items);
+
+            if(items.status === 200){
+                this.setState({
+                    profile : items.data
+                })
+            }
+
+            console.log(this.state.profile);
         });
     }
 
