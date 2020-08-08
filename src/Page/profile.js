@@ -18,7 +18,8 @@ export default class proFile extends React.Component {
         console.log(props.match.params.name);
         this.state = {
             menuOn :  'info',
-            profile : {},
+            profile : [],
+            careerDate : Fun.a(),
         }
     }
 

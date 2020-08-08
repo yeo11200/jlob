@@ -114,6 +114,9 @@ axios({
     lastName: 'Flintstone'
   }
 });
+
+// axios의 parameter은 url, data(객체), header(객체) 사용하면 된다.
+axios.get(url, params, header).then().catch(e) 
 ```
 ##### 1. firebase를 가지고 웹 push를 만들 예정
 ```npm 
@@ -156,4 +159,22 @@ yarn add jquery
 axios.get('http://localhost:8004/profile', {}).then((response) => {
     console.log(response);
 });
+```
+
+#### 4. axios header
+```js
+// 글로벌로 선언해서 사용을 할 수 있다.
+axios.defaults.baseURL = 'https://api.example.com';
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+// axios를 선언
+const instance = axios.create({
+    // 기본값을 세팅
+    // timeout을 보통 0초로 지정
+    baseURL = 'https://api.example.com';
+});
+
+// 인스턴스의 모든 요청은 2.5초 간만 대기 후 타임아웃 처리합니다.
+instance.defaults.timeout = 2500;
 ```
