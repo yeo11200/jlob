@@ -1,46 +1,55 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 import axios from 'axios';
 // 외부에 있는 React를 불러오기 위해서 사용을 한다.
 // 단 별칭을 지어주는게 좋다.
 import * as Fun from '../fun';
 import ProfileWrite from './write/profileWrite';
 import * as COMMON from '../common';
+import List from './list/list';
 
 export default class proFile extends React.Component {
 
     // 제일 먼저 시작될 함수
     constructor(props){
-
-        console.log(COMMON.API_SERVER);
         super(props);
-        console.log(Fun.a());
-        console.log(props.match.params.name);
         this.state = {
             menuOn :  'info',
             profile : [],
             careerDate : Fun.a(),
+            isLoding : false,
         }
+        
+    }
+
+    getList = async () => {
+        await axios.get(COMMON.API_SERVER + '/profile', {}).then((response) => {
+            var items = response.data;
+            this.setState({
+                profile : items.data,
+                isLoding : true
+            })
+
+            console.log(this.state.profile);
+        }).catch(response => {
+            this.setState({
+                profile : [],
+                isLoding : false
+            })
+        });
     }
 
     // component가 시작되기 전에 사용할 함수
-    componentWillMount() {
+    async componentDidMount () {
         console.log(this.state.menuOn);
 
-        axios.get(COMMON.API_SERVER + '/profile', {}).then((response) => {
-            var items = response.data;
+        console.log(this.state);  
+        await this.getList();
 
-            console.log(items);
-
-            if(items.status === 200){
-                this.setState({
-                    profile : items.data
-                })
-            }
-
-            console.log(this.state.profile);
-        });
+        console.log(this.state);       
     }
+
+
 
     menuClickOn = function(menu){
         let menuToggle = null;
@@ -55,15 +64,16 @@ export default class proFile extends React.Component {
         }
         this.setState({menuOn : menuToggle});
     }
-
     render(){
+        const {profile, isLoding } = this.state;
+
+        console.log(profile);
         return(
             <div className="profile-info">
                 <div className="profile-about-title">
                     <span>항상 노력하는 지원자 신진섭입니다.</span>
                     <span>총경력 : {this.state.careerDate}</span>
                 </div>
-                
                 <ul className="profile-menu">
                     <li onClick={ () => { this.menuClickOn('info')}}
                         className={(this.state.menuOn === 'info' ? 'on' : '')}
@@ -81,7 +91,12 @@ export default class proFile extends React.Component {
                         발표내용
                     </li>
                 </ul>
-
+                <List list={profile}></List>
+                {
+                    isLoding ? profile.caeer.map((value, index) =>{
+                        return <li>{value.mc_compony}</li>
+                    }) : '2'
+                }
                 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
                     <dl>
                         <dt>신진섭 </dt>
@@ -206,7 +221,6 @@ export default class proFile extends React.Component {
                  * 글쓰기시 활성화 component
                  * writer 클릭시 class 활성화 active
                  */}
-
                  <div>
                      <ProfileWrite></ProfileWrite>
                  </div>
