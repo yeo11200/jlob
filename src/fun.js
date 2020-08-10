@@ -17,5 +17,34 @@ export function a(){
     let firstMonth = (careerFirstDateEnd.getTime() - careerFirstDateStart.getTime()) / month;
     let secondMonth = (careerSecDateEnd.getTime() - careerSecDateStart.getTime()) / month;
 
-    return Math.ceil(firstMonth + secondMonth);
+
+    let allCareer = Math.ceil(firstMonth + secondMonth);
+    let data = null;
+
+    if(allCareer > 13){
+
+        var yearCareer = Math.floor((allCareer / 12));
+        data = Math.floor(allCareer / 12) +'년' + (allCareer % (12 * yearCareer)) +'개월';
+    }else{
+        data = allCareer + '개월';
+    }
+
+    return data;
+}
+
+export function dateYmdFilter(date){
+
+    let dateYmd = null;
+    let dateA = null;
+
+    if(date == null){
+
+        dateYmd = 'Now';
+    }else{
+        dateA = date.split('T');
+
+        dateYmd = dateA[0];
+    }
+
+    return dateYmd;
 }

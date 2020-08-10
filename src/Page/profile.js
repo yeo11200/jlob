@@ -92,11 +92,29 @@ export default class proFile extends React.Component {
                     </li>
                 </ul>
                 <List list={profile}></List>
+                <ul>
                 {
                     isLoding ? profile.caeer.map((value, index) =>{
-                        return <li>{value.mc_compony}</li>
-                    }) : '2'
+                        return (
+                            <li>
+                                <div>
+                                    <span>{value.mc_compony}</span>
+                                </div>
+                                <div>
+                                    <span>{Fun.dateYmdFilter(value.mc_startdate)}</span> ~ 
+                                    <span>{Fun.dateYmdFilter(value.mc_enddate)}</span>
+                                </div>
+                                <div>
+                                    <span>{value.mc_position}</span>
+                                </div>
+                                <div>
+                                    <span>{value.mc_project_name}</span>
+                                </div>
+                            </li>
+                        )
+                    }) : <li>Loding</li>
                 }
+                </ul>
                 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
                     <dl>
                         <dt>신진섭 </dt>
