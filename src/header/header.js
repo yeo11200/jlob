@@ -38,19 +38,19 @@ class Header extends React.Component{
                          * exact를 사용하면 /일떄만 나오고 나머지는 안나온다. 
                          * 비슷한 url에 정확하게를 원한다면 exact를 사용한다.
                          */}
-                        <Link exact to="/jlob/zzzz1" onClick={(e) => {this.headerClick ('zzzz')}}>zzzz</Link>
+                        <Link exact to="?zzzz1" onClick={(e) => {this.headerClick ('zzzz')}}>zzzz</Link>
                     </li>
                     <li className={this.state.classNamePush == 'about' ? 'on' : ''}>
                         {/**
                          * Link는 URL를 넣을 때 사용한다.
                          */}
-                        <Link exact to="/jlob/about" onClick={(e) => {this.headerClick ('about')}}>이력서</Link>
+                        <Link exact to="?about" onClick={(e) => {this.headerClick ('about')}}>이력서</Link>
                     </li>
                     <li className={this.state.classNamePush == 'blog' ? 'on' : ''}>
-                        <Link to="/jlob/blog" onClick={(e) => {this.headerClick ('blog')}}>Blog 정보</Link>
+                        <Link to="?blog" onClick={(e) => {this.headerClick ('blog')}}>Blog 정보</Link>
                     </li>
                     <li className={this.state.classNamePush == 'schedule' ? 'on' : ''}>
-                        <Link to="/jlob/schedule" onClick={(e) => {this.headerClick ('schedule')}}>scedlue</Link>
+                        <Link to="?schedule" onClick={(e) => {this.headerClick ('schedule')}}>scedlue</Link>
                     </li>
                 </ul>
             </div>
