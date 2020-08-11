@@ -178,3 +178,22 @@ const instance = axios.create({
 // 인스턴스의 모든 요청은 2.5초 간만 대기 후 타임아웃 처리합니다.
 instance.defaults.timeout = 2500;
 ```
+#### 5. React Oh Tag
+```npm
+// https://flamingotiger.github.io/frontend/react/react-helmet/
+npm install --save react-helmet @types/react-helmet
+
+```
+
+##### 1. og tag란 
+###### - 미리보기 제목, 설명, 이미지로 사이트의 정책을 할 수 있고, head에 meta tag에 적어서 사용을한다.
+
+###### og tag 다양한 속성
+| 속성 | 뜻 |
+| --- | :---: |
+| subject | 홈페이지의 주제 |
+| title | 홈페이지의 이름 |
+| description | 홈페이지의 설명 |
+| Keywords | 키워드를 입력 |
+| Author | 만들사람 이름 |
+| robots | All, index,follow, noindex,follow. index,nofollow, noindex,nofollow| 
