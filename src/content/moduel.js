@@ -18,12 +18,12 @@ class moduel extends React.Component {
                  * render function () { return <>} 이렇게 쓰는 방법
                  * component = {component }를 사용하는 방법이다
                  */}
-                <Route path="?zzzz1" render={() => (
+                <Route path="/zzzz1" render={() => (
                     <h3>Render Test</h3>
                 )}></Route>
-                <Route path="?about" component={Profile}></Route>
-                <Route path="?blog" component={ () => <Blog name="name"></Blog>}></Route>
-                <Route path="?schedule" component={ () => <Schedule name="schedule"></Schedule>}></Route>
+                <Route path="/about" component={Profile}></Route>
+                <Route path="/blog" component={ () => <Blog name="name"></Blog>}></Route>
+                <Route path="/schedule" component={ () => <Schedule name="schedule"></Schedule>}></Route>
             </div>
         )
     }
