@@ -13,6 +13,7 @@ import Header from './header/header';
 import Moduel from './content/moduel';
 function App() {
   return (
+    // basename={process.env.PUBLIC_URL} : 기본적인 경로는 유지 됨
     <Route className="container" basename={process.env.PUBLIC_URL}>
       <Header></Header>
       <Moduel></Moduel>

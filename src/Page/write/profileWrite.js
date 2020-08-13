@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ReactSummernote from 'react-summernote';
 import axios from 'axios';
 
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 export class profileWrite extends Component {
 
     constructor(prop){
@@ -50,24 +55,10 @@ export class profileWrite extends Component {
                     </select><br></br>
 
                     <input ref={this.proTitle}></input>
-                    {/* <ReactSummernote
-                        value="Default value"
-                        options={{
-                        lang: 'ru-RU',
-                        height: 350,
-                        dialogsInBody: true,
-                        toolbar: [
-                            ['style', ['style']],
-                            ['font', ['bold', 'underline', 'clear']],
-                            ['fontname', ['fontname']],
-                            ['para', ['ul', 'ol', 'paragraph']],
-                            ['table', ['table']],
-                            ['insert', [' link', 'picture', 'video']],
-                            ['view', ['fullscreen', 'codeview']]
-                        ]
-                        }}
-                        onChange={this.onChange}
-                    /> */}
+                    <CKEditor
+                    editor={ ClassicEditor }
+                    data="<p>Hello from CKEditor 5!</p>"
+                    />
 
                     <button onClick={() => {
                         this.submitProfile();

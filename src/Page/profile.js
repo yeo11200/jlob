@@ -94,7 +94,7 @@ export default class proFile extends React.Component {
                 <List list={profile}></List>
                 <ul>
                 {
-                    isLoding ? profile.caeer.map((value, index) =>{
+                    isLoding ? profile.carrer.map((value, index) =>{
                         return (
                             <li>
                                 <div>
@@ -111,6 +111,23 @@ export default class proFile extends React.Component {
                                     <span>{value.mc_project_name}</span>
                                 </div>
                                 
+                    
+                            {
+                                // map {} => 안에는 return () 이 필수로 들어가야한다. 
+                                // react에서는 {} 안에는 습관처럼 return을 적자
+                                value.project.map((value1, index) => {
+                                    return (
+                                        <ul>
+                                            <span className="projectTitle">{index + 1}{value1.pro_title}</span>
+                                            <li>{value1.pro_content}</li>
+                                            <li>{Fun.dateYmdFilter(value1.pro_start_date)}</li>
+                                            <li>{Fun.dateYmdFilter(value1.pro_end_date)}</li>
+                                            <li>{value1.pro_skill_set}</li>
+                                        </ul>
+                                    )
+                                })
+                            }
+                        
                             </li>
                         )
                     }) : <li>Loding</li>
