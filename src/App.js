@@ -13,7 +13,7 @@ import Header from './header/header';
 import Moduel from './content/moduel';
 function App() {
   return (
-    <Route className="container">
+    <Route className="container" basename={process.env.PUBLIC_URL}>
       <Header></Header>
       <Moduel></Moduel>
     </Route>
