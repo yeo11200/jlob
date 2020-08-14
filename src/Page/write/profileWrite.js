@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
 
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
-import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
-import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
-import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import CKEditor from 'ckeditor4-react';
 export class profileWrite extends Component {
 
     constructor(prop){
@@ -56,8 +51,8 @@ export class profileWrite extends Component {
 
                     <input ref={this.proTitle}></input>
                     <CKEditor
-                    editor={ ClassicEditor }
                     data="<p>Hello from CKEditor 5!</p>"
+                    type="classic"
                     />
 
                     <button onClick={() => {
