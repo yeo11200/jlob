@@ -146,6 +146,10 @@ npm install --save jquery
 or 
 
 yarn add jquery
+
+
+// react에서 string 형의 html을 html 파일로 변형을 한다
+dangerouslySetInnerHTML = { {__html : value}}
 ```
 
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
 
-import CKEditor from 'ckeditor4-react';
+
 export class profileWrite extends Component {
 
     constructor(prop){
         super(prop);
+
     }
 
     /**
@@ -50,10 +51,7 @@ export class profileWrite extends Component {
                     </select><br></br>
 
                     <input ref={this.proTitle}></input>
-                    <CKEditor
-                    data="<p>Hello from CKEditor 5!</p>"
-                    type="classic"
-                    />
+                    <div id="editor"></div>
 
                     <button onClick={() => {
                         this.submitProfile();
