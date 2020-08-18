@@ -41,10 +41,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title id="head-title">jlob</title>
-        
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">    
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    
+    <script src='https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js'></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -61,15 +63,6 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
-    <script>
-      window.addEventListener('load', function() {
-        ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-      })
-
-  </script>
+    
   </body>
 </html>

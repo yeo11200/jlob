@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
+/**
+ * jquery 사용하는 라이브러리
+ */
+import $ from 'jquery';
+import Summernote from 'summernote';
+// import 'react-summernote/dist/react-summernote.css'; // import styles
+// import 'react-summernote/lang/summernote-ru-RU'; // you can import any other locale
+
+// Import bootstrap(v3 or v4) dependencies
 
 
 export class profileWrite extends Component {
 
     constructor(prop){
         super(prop);
-
     }
 
+    
     /**
      * ref 생성 = React.createRef
      * ref의 value 값을 가져오기 위해선 current.value
@@ -21,18 +30,31 @@ export class profileWrite extends Component {
     proContent = React.createRef();
 
     submitProfile = function(){
-        alert(this.proTyle.current.value);
-        alert(this.proTitle.current.value);
 
-        var postData = {
-            'pro_type' : this.proTyle.current.value,
-            'pro_title' : this.proTitle.current.value
-        }
+        // var postData = {
+        //     'pro_type' : this.proTyle.current.value,
+        //     'pro_title' : this.proTitle.current.value
+        // }
 
-        axios.post('http://localhost:8004/profile', postData).then(response => {
+        // axios.post('http://localhost:8004/profile', postData).then(response => {
 
-        });
+        // });
     }
+
+    summerChange = (text) =>{
+        console.log(text);
+    }
+
+    /**
+     * componentWillMount : render 전에 실행이 된다 그래서 에러가 해당하는 id나 class로 사용하는 event를 사용하면 에러가 발생
+     * componentDidMount : render 이후 발생하는 id와 class를 이용한 event를 사용하기 좋다.
+     */
+    componentDidMount(){
+        console.log("componentDidMount");
+
+        $('#summernote').summernote();
+    }
+    
     render() {
         return (
             <div>
@@ -52,7 +74,11 @@ export class profileWrite extends Component {
 
                     <input ref={this.proTitle}></input>
                     <div id="editor"></div>
-
+                    {/**
+                     * summernote props로 옵션을 선택할 수 있다는 장점이 있다.
+                     * https://github.com/summernote/react-summernote -> ex 경로
+                     */}
+                     <div id="summernote"></div>
                     <button onClick={() => {
                         this.submitProfile();
                     }}>전송</button>
