@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
-/**
- * jquery 사용하는 라이브러리
- */
-import $ from 'jquery';
-import Summernote from 'summernote';
+
+import {Editor, EditorState} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+
+import ReactQuill from 'react-quill'; // ES6
+import 'react-quill/dist/quill.snow.css'; // ES6
+import * as EditorConfig from './editor.config';
+// import $ from 'jquery';
+
+// imports for summernote
+// import 'react-summernote/dist/react-summernote.css'; // import styles
+// import 'react-summernote/lang/summernote-ru-RU'; // you can import any other locale
+
 // import 'react-summernote/dist/react-summernote.css'; // import styles
 // import 'react-summernote/lang/summernote-ru-RU'; // you can import any other locale
 
@@ -16,6 +24,7 @@ export class profileWrite extends Component {
 
     constructor(prop){
         super(prop);
+
     }
 
     
@@ -30,7 +39,10 @@ export class profileWrite extends Component {
     proContent = React.createRef();
 
     submitProfile = function(){
+        console.log(this.proTyle.current.value);
+        console.log(this.proTitle);
 
+        console.log(this.proTitle.state.value);
         // var postData = {
         //     'pro_type' : this.proTyle.current.value,
         //     'pro_title' : this.proTitle.current.value
@@ -51,8 +63,6 @@ export class profileWrite extends Component {
      */
     componentDidMount(){
         console.log("componentDidMount");
-
-        $('#summernote').summernote();
     }
     
     render() {
@@ -70,15 +80,14 @@ export class profileWrite extends Component {
                         <option value="aboutMe">자기소개서</option>
                         <option value="hopeTeam">희망하는 팀</option>
                         <option value="career">경력증명서</option>
-                    </select><br></br>
-
-                    <input ref={this.proTitle}></input>
-                    <div id="editor"></div>
-                    {/**
-                     * summernote props로 옵션을 선택할 수 있다는 장점이 있다.
-                     * https://github.com/summernote/react-summernote -> ex 경로
-                     */}
-                     <div id="summernote"></div>
+                    </select>
+                    <br></br>
+                    <input id="aaa" ref={this.proTitle}></input>
+                    <ReactQuill
+                        ref={(el) => this.proTitle = el}
+                        formats={EditorConfig.formats}
+                        modules={EditorConfig.modules}
+                    />
                     <button onClick={() => {
                         this.submitProfile();
                     }}>전송</button>
