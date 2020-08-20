@@ -8,7 +8,11 @@ import 'draft-js/dist/Draft.css';
 import ReactQuill from 'react-quill'; // ES6
 import 'react-quill/dist/quill.snow.css'; // ES6
 import * as EditorConfig from './editor.config';
-// import $ from 'jquery';
+import $ from 'jquery';
+
+
+// css imports
+import css from '../../index.css';
 
 // imports for summernote
 // import 'react-summernote/dist/react-summernote.css'; // import styles
@@ -41,7 +45,8 @@ export class profileWrite extends Component {
     submitProfile = function(){
         console.log(this.proTyle.current.value);
         console.log(this.proTitle);
-
+        // ReactQuill = 해당 editor에 대한 값
+        // https://github.com/zenoamaro/react-quill
         console.log(this.proTitle.state.value);
         // var postData = {
         //     'pro_type' : this.proTyle.current.value,
@@ -65,6 +70,7 @@ export class profileWrite extends Component {
         console.log("componentDidMount");
     }
     
+    
     render() {
         return (
             <div>
@@ -87,6 +93,7 @@ export class profileWrite extends Component {
                         ref={(el) => this.proTitle = el}
                         formats={EditorConfig.formats}
                         modules={EditorConfig.modules}
+                        theme="snow" 
                     />
                     <button onClick={() => {
                         this.submitProfile();
