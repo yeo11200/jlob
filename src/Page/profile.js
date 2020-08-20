@@ -133,21 +133,29 @@ export default class proFile extends React.Component {
                 }
                 </ul>
 
-                <ul>
-                    {
-                        isLoding ? profile.list.map((value, index) => {
+                <div>
+                    <ul>
+                        {
+                            isLoding ? profile.list.map((value, index) => {
 
-                            if(value.pro_type == 'profile'){
-                                return(
-                                    <div>
-                                        <span>{value.pro_title}</span>
-                                        <div dangerouslySetInnerHTML={{__html : value.pro_content}}></div>
-                                    </div>
-                                )
-                            }
-                        }) : <li>Loding</li>
-                    }
-                </ul>
+                                if(value.pro_type == 'profile'){
+                                    return(
+                                        <div className="profile">
+                                            <span>{value.pro_title}</span>
+                                            {
+                                                /**
+                                                 * dangerouslySetInnerHTML = v-html, ng-html과 같은 역할
+                                                 * __html : value, 
+                                                 */
+                                            }
+                                            <div dangerouslySetInnerHTML={{__html : value.pro_content}}></div>
+                                        </div>
+                                    )
+                                }
+                            }) : <li>Loding</li>
+                        }
+                    </ul>
+                </div>
                 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
                     <dl>
                         <dt>신진섭 </dt>
