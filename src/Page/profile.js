@@ -91,7 +91,6 @@ export default class proFile extends React.Component {
                         발표내용
                     </li>
                 </ul>
-                <List list={profile}></List>
                 <ul>
                 {
                     isLoding ? profile.carrer.map((value, index) =>{
@@ -132,6 +131,22 @@ export default class proFile extends React.Component {
                         )
                     }) : <li>Loding</li>
                 }
+                </ul>
+
+                <ul>
+                    {
+                        isLoding ? profile.list.map((value, index) => {
+
+                            if(value.pro_type == 'profile'){
+                                return(
+                                    <div>
+                                        <span>{value.pro_title}</span>
+                                        <div dangerouslySetInnerHTML={{__html : value.pro_content}}></div>
+                                    </div>
+                                )
+                            }
+                        }) : <li>Loding</li>
+                    }
                 </ul>
                 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
                     <dl>

@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios';
 
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
-
 import ReactQuill from 'react-quill'; // ES6
 import 'react-quill/dist/quill.snow.css'; // ES6
 import * as EditorConfig from './editor.config';
@@ -12,7 +9,7 @@ import $ from 'jquery';
 
 
 // css imports
-import css from '../../index.css';
+import '../../index.css';
 
 // imports for summernote
 // import 'react-summernote/dist/react-summernote.css'; // import styles
