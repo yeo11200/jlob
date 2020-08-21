@@ -10,15 +10,6 @@ div > div.blog-info > dd > dd.on { background-color: lawngreen; font-weight: 100
 div > div.blog-connenct > span { display: none; overflow: hidden; }
 div > div.blog-connenct > span.over { display: inline-block; overflow: scroll; }
 
-/* profile info 영역 css */
-div > div.profile-info > ul.profile-menu > li { width: auto; background-color: blueviolet;}
-div > div.profile-info > ul.profile-menu > li.on { color: currentColor; font-weight: 400; background-attachment: fixed; background-color: darkblue;}
-div > div.profile-info > div.profile-about-title { font-weight: 600; font-size: medium;}
-div > div.profile-info > ul.profile-menu > li { display: inline; margin-left: 1ex; }
-div > div.profile-info > div.profile-about-me { display: none; width: 700px; height: 200px; }
-div > div.profile-info > div.profile-about-me.on { display: block; width: 700px; height: 200px; 
-border-width: 2px; border-color: #aaa; border: 3px;}
-
 /* div 영역잡고 선 스타일 내기 
 border: 선굵기, style, color
 border-radius : 외곽 선 둥근 모서리
