@@ -200,4 +200,12 @@ npm install --save react-helmet @types/react-helmet
 | description | 홈페이지의 설명 |
 | Keywords | 키워드를 입력 |
 | Author | 만들사람 이름 |
-| robots | All, index,follow, noindex,follow. index,nofollow, noindex,nofollow| 
+| robots | All, index,follow, noindex,follow. index,nofollow, noindex,nofollow|
+
+
+
+```html
+// a tag에서 href로 메일을 보내려고 하면 mailto를 앞에 붙혀서 사용을 해야한다.
+
+<a href="mailto:yeo11200@hanmail.net">yeo11200@hanmail.net</a>
+```
