@@ -58,7 +58,9 @@ className.defaultProps = {
 <!-- classname 작성시 {this.state.a ? 'a' : ''} -->
 <li className={this.state.classNamePush == 'zzzz' ? 'on' : ''}>
 
-<!-- 다중 className을 설정할 경우 -->
+<!-- 다중 className을 설정할 경우
+  3항연산자로 다이나믹하게 하려면 ()을 사용이용해서 사용해야한다.\
+ -->
 <div className={"profile-about-me " + (this.state.menuOn === 'info' ? 'on' : '')}>
 ```
 

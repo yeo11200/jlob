@@ -6,6 +6,7 @@ import axios from 'axios';
 import * as Fun from '../fun';
 import ProfileWrite from './write/profileWrite';
 import * as COMMON from '../common';
+import Char from './chat';
 
 export default class proFile extends React.Component {
 
@@ -17,6 +18,7 @@ export default class proFile extends React.Component {
             profile : [],
             careerDate : Fun.a(),
             isLoding : false,
+            profilea : 'N',
         }
         
     }
@@ -68,9 +70,9 @@ export default class proFile extends React.Component {
 
         console.log(profile);
         return(
-            <div className="profile-info">
+            <div className={'profile-write ' + (this.state.profilea == 'N' ? 'profile-info' : '') + ' ssss'}>
                 <div className="profile-about-title">
-                    <span>항상 노력하는 지원자 신진섭입니다.</span>
+                    <span>항상 노력하는 지원자 신진섭입니다.{this.state.profilea}</span>
                     <span>총경력 : {this.state.careerDate}</span>
                 </div>
                 <div className={"profile-about-me"}>
@@ -185,8 +187,9 @@ export default class proFile extends React.Component {
                  * 글쓰기 포맷
                  * 글쓰기시 활성화 component
                  * writer 클릭시 class 활성화 active
+                 * 
                  */}
-                 <div>
+                 <div className={'profile-write ' + (this.state.profilea == 'Y' ? 'on' : '') + ' ssss'}>
                      <ProfileWrite></ProfileWrite>
                  </div>
             </div>

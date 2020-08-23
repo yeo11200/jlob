@@ -52,6 +52,10 @@ class Header extends React.Component{
                     <li className={this.state.classNamePush == 'schedule' ? 'on' : ''}>
                         <Link to="/schedule" onClick={(e) => {this.headerClick ('schedule')}}>scedlue</Link>
                     </li>
+
+                    <li>
+                        <Link to="/chat" onClick={(e) => {this.headerClick ('chat')}}>chat</Link>
+                    </li>
                 </ul>
             </div>
         )
