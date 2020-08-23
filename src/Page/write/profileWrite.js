@@ -7,7 +7,7 @@ import ReactQuillImageUploader, {saveImageSrc} from 'react-quill-image-uploader'
 import 'react-quill/dist/quill.snow.css'; // ES6
 import * as EditorConfig from './editor.config';
 import $ from 'jquery';
-
+import queryString from 'query-string';
 
 // css imports
 import '../../index.css';
