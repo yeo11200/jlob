@@ -13,7 +13,9 @@ class Char extends React.Component{
         this.state = {name : '', message : '', messageList : []};
 
     }
-    
+    /**
+     * 이걸 인용해서 chanel id도 만들고 채팅방 리스트와 함께 만들수 있다.
+     */
     componentDidMount(){
               
         socket.emit('init', { name: 'aaaa'});
