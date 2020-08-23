@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 import $ from 'jquery';
 
-var socket = io.connect('http://localhost:4000/');
+var socket = io.connect('https://jinseop-todo-list.herokuapp.com:4000/');
 class Char extends React.Component{
 
     constructor(props){

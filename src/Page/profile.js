@@ -6,7 +6,6 @@ import axios from 'axios';
 import * as Fun from '../fun';
 import ProfileWrite from './write/profileWrite';
 import * as COMMON from '../common';
-import Char from './chat';
 
 export default class proFile extends React.Component {
 
@@ -49,7 +48,7 @@ export default class proFile extends React.Component {
 
         console.log(this.state);       
     }
-
+    
 
 
     menuClickOn = function(menu){
@@ -65,6 +64,11 @@ export default class proFile extends React.Component {
         }
         this.setState({menuOn : menuToggle});
     }
+
+    updateContent = (id) => {
+        console.log(id);
+    }
+
     render(){
         const {profile, isLoding } = this.state;
 
@@ -144,8 +148,11 @@ export default class proFile extends React.Component {
                                     )
                                 })
                             }
-                        
+
+                            <button onClick={() => { this.updateContent(value.mc_idx)} }>수정 버튼</button>
+
                             </li>
+                            
                         )
                     }) : <li>Loding</li>
                 }

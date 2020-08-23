@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Profile, Blog, Schedule, Char } from './index';
 class moduel extends React.Component {
 
@@ -23,7 +23,10 @@ class moduel extends React.Component {
                 <Route path="/zzzz1" render={() => (
                     <h3>Render Test</h3>
                 )}></Route>
-                <Route path="/about" component={Profile}></Route>
+                <Switch>
+                    <Route path="/about" component={Profile}></Route>
+                    <Route path="/about?id=:id" component={Profile}></Route>
+                </Switch>
                 <Route path="/blog" component={ () => <Blog name="name"></Blog>}></Route>
                 <Route path="/schedule" component={ () => <Schedule name="schedule"></Schedule>}></Route>
                 <Route path="/chat" component={ () => <Char></Char>}></Route>
