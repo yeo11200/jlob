@@ -211,3 +211,12 @@ npm install --save react-helmet @types/react-helmet
 
 <a href="mailto:yeo11200@hanmail.net">yeo11200@hanmail.net</a>
 ```
+
+
+#### react에서 파라메터 추가 하는 방법 
+```js
+<Link to={'/profile?:pa&:page&:search'}>
+</Link>
+
+<Route path="/profile?:pa&:page&:search" component={Compornt}></Route>
+```
