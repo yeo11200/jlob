@@ -84,9 +84,13 @@ class Char extends React.Component{
     messageContent = React.createRef();
 
 
-    keyDownFuc = (e) =>{
+    keyDownFuc = (e, type) =>{
 
-        console.log(e);
+        if(type == 'nick'){
+            if(e.keyCode == 13){
+                this.nicknameSend();
+            }
+        }
     }
     render(){
         let { name, messageList, status } = this.state;
@@ -112,6 +116,7 @@ class Char extends React.Component{
                             disabled = {status ? "disabled" : false}
                             value = {name}
                             onChange = {e => this.onTodoChange(e.target.value)}
+                            onKeyDown={(e) => { this.keyDownFuc(e, 'nick');}}
                             >
                         </input>
                         <button 
@@ -120,7 +125,7 @@ class Char extends React.Component{
                         </button>
                     </div>
                     <div style={display} id="content">
-                        <textarea ref={this.messageContent} onKeyDown={(e) => { this.keyDownFuc(e);}}></textarea>
+                        <textarea ref={this.messageConten}></textarea>
                         <button onClick={() => { this.commentSend()}}>
                             Send
                         </button>
