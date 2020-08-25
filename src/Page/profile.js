@@ -6,6 +6,8 @@ import axios from 'axios';
 import * as Fun from '../fun';
 import ProfileWrite from './write/profileWrite';
 import * as COMMON from '../common';
+import { Link, Route } from 'react-router-dom';
+import Chat from './chat';
 
 export default class proFile extends React.Component {
 
@@ -20,6 +22,7 @@ export default class proFile extends React.Component {
             profilea : 'N',
         }
         
+        console.log(props);
     }
 
     getList = async () => {
@@ -65,10 +68,10 @@ export default class proFile extends React.Component {
         this.setState({menuOn : menuToggle});
     }
 
-    updateContent = (id) => {
-        console.log(id);
+    aaaa = (e) =>{
+        console.log(11);
+        window.location.href = `/about/${e}`;
     }
-
     render(){
         const {profile, isLoding } = this.state;
 
@@ -117,42 +120,40 @@ export default class proFile extends React.Component {
                 {
                     isLoding ? profile.carrer.map((value, index) =>{
                         return (
-                            <li>
-                                <div>
-                                    <span>{value.mc_compony}</span>
-                                </div>
-                                <div>
-                                    <span>{Fun.dateYmdFilter(value.mc_startdate)}</span> ~ 
-                                    <span>{Fun.dateYmdFilter(value.mc_enddate)}</span>
-                                </div>
-                                <div>
-                                    <span>{value.mc_position}</span>
-                                </div>
-                                <div>
-                                    <span>{value.mc_project_name}</span>
-                                </div>
-                                
-                    
-                            {
-                                // map {} => 안에는 return () 이 필수로 들어가야한다. 
-                                // react에서는 {} 안에는 습관처럼 return을 적자
-                                value.project.map((value1, index) => {
-                                    return (
-                                        <ul>
-                                            <span className="projectTitle">{index + 1}{value1.pro_title}</span>
-                                            <li>{value1.pro_content}</li>
-                                            <li>{Fun.dateYmdFilter(value1.pro_start_date)}</li>
-                                            <li>{Fun.dateYmdFilter(value1.pro_end_date)}</li>
-                                            <li>{value1.pro_skill_set}</li>
-                                        </ul>
-                                    )
-                                })
-                            }
-
-                            <button onClick={() => { this.updateContent(value.mc_idx)} }>수정 버튼</button>
-
-                            </li>
-                            
+                                <li>
+                                    <div>
+                                        <span>{value.mc_compony}</span>
+                                    </div>
+                                    <div>
+                                        <span>{Fun.dateYmdFilter(value.mc_startdate)}</span> ~ 
+                                        <span>{Fun.dateYmdFilter(value.mc_enddate)}</span>
+                                    </div>
+                                    <div>
+                                        <span>{value.mc_position}</span>
+                                    </div>
+                                    <div>
+                                        <span>{value.mc_project_name}</span>
+                                    </div>
+                                    
+                        
+                                {
+                                    // map {} => 안에는 return () 이 필수로 들어가야한다. 
+                                    // react에서는 {} 안에는 습관처럼 return을 적자
+                                    value.project.map((value1, index) => {
+                                        return (
+                                            <Link to={`/about/${value1.pro_id}`}>
+                                                <ul>
+                                                    <span className="projectTitle">{index + 1}{value1.pro_title}</span>
+                                                    <li>{value1.pro_content}</li>
+                                                    <li>{Fun.dateYmdFilter(value1.pro_start_date)}</li>
+                                                    <li>{Fun.dateYmdFilter(value1.pro_end_date)}</li>
+                                                    <li>{value1.pro_skill_set}</li>
+                                                </ul>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                                </li>
                         )
                     }) : <li>Loding</li>
                 }
@@ -180,6 +181,10 @@ export default class proFile extends React.Component {
                             }) : <li>Loding</li>
                         }
                     </ul>
+
+                    <div>
+                        <Link to="/write">글쓰기</Link>
+                    </div>
                 </div>
                 <div className={"profile-about-me"}>
                     <dl>
@@ -194,11 +199,10 @@ export default class proFile extends React.Component {
                  * 글쓰기 포맷
                  * 글쓰기시 활성화 component
                  * writer 클릭시 class 활성화 active
-                 * 
                  */}
-                 <div className={'profile-write ' + (this.state.profilea == 'Y' ? 'on' : '') + ' ssss'}>
+                 {/* <div className={'profile-write ' + (this.state.profilea == 'Y' ? 'on' : '') + ' ssss'}>
                      <ProfileWrite></ProfileWrite>
-                 </div>
+                 </div> */}
             </div>
         )
     }

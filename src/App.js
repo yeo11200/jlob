@@ -5,16 +5,17 @@ import './App.css';
 import {
   BrowserRouter as Route,
   Router,
-  Link
+  Link 
 } from 'react-router-dom';
 
+import { useHistory  } from 'react-router'
 import Header from './header/header';
 
 import Moduel from './content/moduel';
 function App() {
   return (
     // basename={process.env.PUBLIC_URL} : 기본적인 경로는 유지 됨
-    <Route className="container" basename={process.env.PUBLIC_URL}>
+    <Route className="container" basename={process.env.PUBLIC_URL} history={useHistory}>
       <Header></Header>
       <Moduel></Moduel>
     </Route>

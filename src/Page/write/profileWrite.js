@@ -24,8 +24,8 @@ import '../../index.css';
 
 export class profileWrite extends Component {
 
-    constructor(prop){
-        super(prop);
+    constructor(props){
+        super(props);
 
     }
 
@@ -46,6 +46,9 @@ export class profileWrite extends Component {
         // ReactQuill = 해당 editor에 대한 값
         // https://github.com/zenoamaro/react-quill
         console.log(this.proTitle.state.value);
+
+        console.log(this.props)
+        this.props.history.goBack();
         // var postData = {
         //     'pro_type' : this.proTyle.current.value,
         //     'pro_title' : this.proTitle.current.value

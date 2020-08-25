@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Profile, Blog, Schedule, Char } from './index';
+import ProfileWrite from '../Page/write/profileWrite';
 class moduel extends React.Component {
 
     constructor(props){
@@ -24,12 +25,17 @@ class moduel extends React.Component {
                     <h3>Render Test</h3>
                 )}></Route>
                 <Switch>
-                    <Route path="/about" component={Profile}></Route>
-                    <Route path="/about?id=:id" component={Profile}></Route>
+                    <Route exact path="/about" component={Profile}></Route>
                 </Switch>
+                <Route path="/about/:id" component={Char}></Route>
                 <Route path="/blog" component={ () => <Blog name="name"></Blog>}></Route>
                 <Route path="/schedule" component={ () => <Schedule name="schedule"></Schedule>}></Route>
                 <Route path="/chat" component={ () => <Char></Char>}></Route>
+
+                {/**
+                 * 이벤트 형식으로 사용하면 props에서 에러가 발생함
+                 */}
+                <Route path="/write" component={ProfileWrite}></Route>
             </div>
         )
     }

@@ -3,47 +3,62 @@ import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 import $ from 'jquery';
 
-var socket = io.connect('https://jinseop-todo-list.herokuapp.com:4000/');
+var socket = io.connect('https://jinseop-todo-list.herokuapp.com/');
 class Char extends React.Component{
 
     constructor(props){
 
         super(props);
 
-        this.state = {name : '', message : '', messageList : []};
+        console.log(props.match);
+        this.state = {name : '', message : '', messageList : [], status : false};
 
     }
     /**
      * 이걸 인용해서 chanel id도 만들고 채팅방 리스트와 함께 만들수 있다.
      */
     componentDidMount(){
-              
-        socket.emit('init', { name: 'aaaa'});
-        /**
-         * 서버에서 emit으로 호출해서 사용을 한다.
-         */
-        socket.on('connent', (msg) => {
-            console.log(msg);
-        });
+
+    }
+
+    nicknameSend = () => {
+    
+        console.log(this.messageName.current.value);
+
+        let nickname = this.messageName.current.value;
+        this.setState({name : nickname});
+
+        if(nickname == ''){
+            console.log('에러');
+        }else {
+            socket.emit('init', { name: nickname});
+            /**
+             * 서버에서 emit으로 호출해서 사용을 한다.
+             */
+            socket.on('connent', (msg) => {
+                console.log(msg);
+                document.getElementById('content').style.display = 'block';
+                this.setState({status : true});
+            });
+        }
         
     }
 
-    aaaa = () => {
+    commentSend = () => {
   
         /**
          * 서버에서 on으로 받아서 사용을 한다.
          */
-        if(this.messageContent.current.value != this.state.name){
-            
-            
-            this.setState({
-                name : this.messageContent.current.value
-            });
+        this.setState({
+            message : this.messageContent.current.value
+        });
 
+        var chating = {
+            'nickname' : this.state.nickname,
+            'message' : this.messageContent.current.value
         }
         
-        
-        socket.emit('chat message1', this.messageContent.current.value);
+        socket.emit('chat message1', chating);
 
     }
 
@@ -55,16 +70,28 @@ class Char extends React.Component{
 
         socket.on('chat message2', (msg) => {
             this.messageContent.current.value = '';
-            message.unshift({'content' : msg});
+            message.unshift({'content' : msg.message});
 
             this.setState({messageList : message });
         });
     }
+
+    onTodoChange = (value) => {
+        this.setState({name : value});
+    }
+
     messageName = React.createRef();
     messageContent = React.createRef();
 
+
+    keyDownFuc = (e) =>{
+
+        console.log(e);
+    }
     render(){
-        let { messageList } = this.state;
+        let { name, messageList, status } = this.state;
+
+        const display = {display: 'none'};
         return(
             <div>
                 <div>
@@ -79,9 +106,25 @@ class Char extends React.Component{
                     </ul>
                 </div>
                 <div>
-                    <input ref={this.messageName}></input>
-                    <textarea ref={this.messageContent}></textarea>
-                    <button onClick={() => { this.aaaa()}}>Send</button>
+                    <div>
+                        <input 
+                            ref={this.messageName} 
+                            disabled = {status ? "disabled" : false}
+                            value = {name}
+                            onChange = {e => this.onTodoChange(e.target.value)}
+                            >
+                        </input>
+                        <button 
+                            onClick={() => { this.nicknameSend()}}
+                        >닉네임 등록
+                        </button>
+                    </div>
+                    <div style={display} id="content">
+                        <textarea ref={this.messageContent} onKeyDown={(e) => { this.keyDownFuc(e);}}></textarea>
+                        <button onClick={() => { this.commentSend()}}>
+                            Send
+                        </button>
+                    </div>
                 </div>
 
             </div>
