@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 import $ from 'jquery';
+import * as Comm from '../common';
 
-var socket = io.connect('localhost:5000/');
+var socket = io.connect(Comm.API_SERVER);
 class Char extends React.Component{
 
     constructor(props){
