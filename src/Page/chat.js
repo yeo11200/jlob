@@ -50,16 +50,39 @@ class Char extends React.Component{
         /**
          * 서버에서 on으로 받아서 사용을 한다.
          */
+
+        var messageContent = this.messageContent.current.value;
         this.setState({
-            message : this.messageContent.current.value
+            message : messageContent
         });
 
-        var chating = {
-            'nickname' : this.state.name,
-            'message' : this.messageContent.current.value
+        if(messageContent.length > 0){
+
+            if(!messageContent.includes('퇴장')){
+                var chating = {
+                    'nickname' : this.state.name,
+                    'message' : messageContent
+                }
+                
+                socket.emit('chat message1', chating);
+            }else {
+                var out = window.confirm('진짜 퇴장하시겠습니까?');
+
+                if(out){
+
+                }else{
+                    var chating = {
+                        'nickname' : this.state.name,
+                        'message' : messageContent
+                    }
+                    
+                    socket.emit('chat message1', chating);
+                }
+            }
+
+        }else{
+            alert('채팅을 입력하세요.');
         }
-        
-        socket.emit('chat message1', chating);
 
     }
 
