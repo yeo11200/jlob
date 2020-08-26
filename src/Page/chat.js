@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 import $ from 'jquery';
 
-var socket = io.connect('https://jinseop-todo-list.herokuapp.com/');
+var socket = io.connect('localhost:5000/');
 class Char extends React.Component{
 
     constructor(props){
@@ -54,7 +54,7 @@ class Char extends React.Component{
         });
 
         var chating = {
-            'nickname' : this.state.nickname,
+            'nickname' : this.state.name,
             'message' : this.messageContent.current.value
         }
         
@@ -70,7 +70,9 @@ class Char extends React.Component{
 
         socket.on('chat message2', (msg) => {
             this.messageContent.current.value = '';
-            message.unshift({'content' : msg.message});
+
+            console.log(msg)
+            message.unshift({'nickname' : msg.nickname , 'content' : msg.message});
 
             this.setState({messageList : message });
         });
@@ -103,7 +105,7 @@ class Char extends React.Component{
                         {
                             messageList.length > 0 ? messageList.map((value, index) => {
                                 return(
-                                    <li>{value.content}</li>
+                                    <li className={value.nickname == name ? 'right' : 'left'}>{value.nickname} : {value.content}</li>
                                 )
                             }) : <li>send ing</li>
                         }
@@ -125,7 +127,7 @@ class Char extends React.Component{
                         </button>
                     </div>
                     <div style={display} id="content">
-                        <textarea ref={this.messageConten}></textarea>
+                        <textarea ref={this.messageContent}></textarea>
                         <button onClick={() => { this.commentSend()}}>
                             Send
                         </button>
