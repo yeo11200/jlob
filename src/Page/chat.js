@@ -108,6 +108,7 @@ class Char extends React.Component{
 
     messageName = React.createRef();
     messageContent = React.createRef();
+    roomName = React.createRef();
 
 
     keyDownFuc = (e, type) =>{
@@ -116,7 +117,26 @@ class Char extends React.Component{
             if(e.keyCode == 13){
                 this.nicknameSend();
             }
+        }else if(type == 'room'){
+            if(e.keyCode == 13){
+                this.submitRoomName();
+            }
         }
+    }
+
+    submitRoomName = () => {
+        let rommName = (this.roomName.current.value == '') ? '' : this.roomName.current.value;
+
+        if(rommName.length > 0){
+            let data = {
+                'mUid' : 1,
+                'roomName' : rommName,
+            }
+            socket.emit('create room', data);
+        }else {
+            alert('방 정보를 입력하세요');
+        }
+        
     }
     render(){
         let { name, messageList, status } = this.state;
@@ -137,6 +157,11 @@ class Char extends React.Component{
                 </div>
                 <div>
                     <div>
+                        <input
+                            ref={this.roomName}
+                            onKeyDown={(e) => { this.keyDownFuc(e, 'room');}}
+                        >
+                        </input>
                         <input 
                             ref={this.messageName} 
                             disabled = {status ? "disabled" : false}
