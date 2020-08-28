@@ -140,7 +140,7 @@ class Char extends React.Component{
 
     submitRoomName = () => {
         let rommName = (this.roomName.current.value == '') ? '' : this.roomName.current.value;
-        
+
         if(rommName.length > 0){
             let data = {
                 'mUid' : 1,
@@ -181,27 +181,35 @@ class Char extends React.Component{
                 </div>
                 <div>
                     <div>
-                        <input
-                            ref={this.roomName}
-                            disabled = {roomStatus ? "disabled" : false}
-                            onKeyDown={(e) => { this.keyDownFuc(e, 'room');}}
-                        >
-                        </input>
-                        <input 
-                            ref={this.messageName} 
-                            disabled = {status ? "disabled" : false}
-                            value = {name}
-                            onChange = {e => this.onTodoChange(e.target.value)}
-                            onKeyDown={(e) => { this.keyDownFuc(e, 'nick');}}
+                        <div>
+                            <input
+                                ref={this.roomName}
+                                disabled = {roomStatus ? "disabled" : false}
+                                onKeyDown={(e) => { this.keyDownFuc(e, 'room');}}
                             >
-                        </input>
-                        <button 
-                            onClick={() => { this.nicknameSend()}}
-                        >닉네임 등록
-                        </button>
+                            </input>
+                            <button 
+                                onClick={() => { this.submitRoomName()}}
+                            >방 생성
+                            </button>
+                        </div>
+                        <div>
+                            <input 
+                                ref={this.messageName} 
+                                disabled = {status ? "disabled" : false}
+                                value = {name}
+                                onChange = {e => this.onTodoChange(e.target.value)}
+                                onKeyDown={(e) => { this.keyDownFuc(e, 'nick');}}
+                                >
+                            </input>
+                            <button 
+                                onClick={() => { this.nicknameSend()}}
+                            >닉네임 등록
+                            </button>
+                        </div>
                     </div>
                     <div style={display} id="content">
-                        <textarea ref={this.messageContent}></textarea>
+                        <textarea ref={this.messageContent}></textarea><br/>
                         <button onClick={() => { this.commentSend()}}>
                             Send
                         </button>

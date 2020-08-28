@@ -56,6 +56,10 @@ class Header extends React.Component{
                     <li>
                         <Link to="/chat" onClick={(e) => {this.headerClick ('chat')}}>chat</Link>
                     </li>
+
+                    <li>
+                         <button>로그인</button>
+                    </li>
                 </ul>
             </div>
         )
