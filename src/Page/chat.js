@@ -12,7 +12,7 @@ class Char extends React.Component{
         super(props);
 
         console.log(props.match);
-        this.state = {name : '', message : '', messageList : [], status : false};
+        this.state = {name : '', message : '', messageList : [], status : false, roomName : '', roomStatus : false};
 
     }
     /**
@@ -36,10 +36,20 @@ class Char extends React.Component{
             /**
              * 서버에서 emit으로 호출해서 사용을 한다.
              */
+            console.log(this.messageName.current.value);
             socket.on('connent', (msg) => {
                 console.log(msg);
                 document.getElementById('content').style.display = 'block';
                 this.setState({status : true});
+            });
+
+            socket.on('connect message', (msg) => {
+                this.messageContent.current.value = '';
+    
+                console.log(msg)
+                // message.unshift({'nickname' : msg.nickname , 'content' : msg.message});
+    
+                this.setState({messageList : msg });
             });
         }
         
@@ -60,6 +70,7 @@ class Char extends React.Component{
 
             if(!messageContent.includes('퇴장')){
                 var chating = {
+                    'room' : this.state.roomName,
                     'nickname' : this.state.name,
                     'message' : messageContent
                 }
@@ -69,12 +80,15 @@ class Char extends React.Component{
                 var out = window.confirm('진짜 퇴장하시겠습니까?');
 
                 if(out){
-
+                    socket.emit('client disconnect', 'aaaa');
                 }else{
                     var chating = {
+                        'room' : this.state.roomName,
                         'nickname' : this.state.name,
                         'message' : messageContent
                     }
+
+                    console.log(this.state.roomName);
                     
                     socket.emit('chat message1', chating);
                 }
@@ -95,7 +109,7 @@ class Char extends React.Component{
         socket.on('chat message2', (msg) => {
             this.messageContent.current.value = '';
 
-            console.log(msg)
+            console.log(msg);
             message.unshift({'nickname' : msg.nickname , 'content' : msg.message});
 
             this.setState({messageList : message });
@@ -126,20 +140,30 @@ class Char extends React.Component{
 
     submitRoomName = () => {
         let rommName = (this.roomName.current.value == '') ? '' : this.roomName.current.value;
-
+        
         if(rommName.length > 0){
             let data = {
                 'mUid' : 1,
                 'roomName' : rommName,
             }
             socket.emit('create room', data);
+
+            socket.on('join room', (data) => {
+                if(data.state == '0000'){
+                    this.setState({'roomStatus' : true, 'roomName' : rommName });
+                    alert(data.message);
+                }else {
+                    this.setState({'roomStatus' : true, 'roomName' : rommName });
+                    alert(data.message);
+                }
+            });
         }else {
             alert('방 정보를 입력하세요');
         }
         
     }
     render(){
-        let { name, messageList, status } = this.state;
+        let { name, messageList, status, roomStatus } = this.state;
 
         const display = {display: 'none'};
         return(
@@ -159,6 +183,7 @@ class Char extends React.Component{
                     <div>
                         <input
                             ref={this.roomName}
+                            disabled = {roomStatus ? "disabled" : false}
                             onKeyDown={(e) => { this.keyDownFuc(e, 'room');}}
                         >
                         </input>
@@ -188,7 +213,7 @@ class Char extends React.Component{
     }
 
     componentWillUnmount(){
-        socket.emit('disconnect', 'aaaa');
+        socket.emit('client disconnect', 'aaaa');
     }
 }
 
