@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 import $ from 'jquery';
 import * as Comm from '../common';
+const queryString = require('query-string');
+
 
 var socket = io.connect(Comm.API_SERVER);
 class Char extends React.Component{
@@ -12,47 +14,19 @@ class Char extends React.Component{
         super(props);
 
         console.log(props.match);
-        this.state = {name : '', message : '', messageList : [], status : false, roomName : '', roomStatus : false};
 
+        console.log(window.location.search);
+        console.log(Math.round(Math.random() * 1000));
+        
+        
+        this.state = {name : '', message : '', messageList : [], status : false, roomName : '', roomStatus : false, clientId : Math.round(Math.random() * 1000)};
     }
+
     /**
      * 이걸 인용해서 chanel id도 만들고 채팅방 리스트와 함께 만들수 있다.
      */
     componentDidMount(){
 
-    }
-
-    nicknameSend = () => {
-    
-        console.log(this.messageName.current.value);
-
-        let nickname = this.messageName.current.value;
-        this.setState({name : nickname});
-
-        if(nickname == ''){
-            console.log('에러');
-        }else {
-            socket.emit('init', { name: nickname});
-            /**
-             * 서버에서 emit으로 호출해서 사용을 한다.
-             */
-            console.log(this.messageName.current.value);
-            socket.on('connent', (msg) => {
-                console.log(msg);
-                document.getElementById('content').style.display = 'block';
-                this.setState({status : true});
-            });
-
-            socket.on('connect message', (msg) => {
-                this.messageContent.current.value = '';
-    
-                console.log(msg)
-                // message.unshift({'nickname' : msg.nickname , 'content' : msg.message});
-    
-                this.setState({messageList : msg });
-            });
-        }
-        
     }
 
     commentSend = () => {
@@ -62,10 +36,17 @@ class Char extends React.Component{
          */
 
         var messageContent = this.messageContent.current.value;
+        let nickname = this.messageName.current.value;
+
         this.setState({
-            message : messageContent
+            message : messageContent,
+            name : nickname
         });
 
+        if(nickname.length == 0){
+            return;
+        }
+        
         if(messageContent.length > 0){
 
             if(!messageContent.includes('퇴장')){
@@ -104,14 +85,10 @@ class Char extends React.Component{
      * state에 변화가 일어났을 경우 발생하는 LifeCycle 
      */
     componentWillMount(){
-        let message = [];
-
+        var message = this.state.messageList;
         socket.on('chat message2', (msg) => {
             this.messageContent.current.value = '';
-
-            console.log(msg);
-            message.unshift({'nickname' : msg.nickname , 'content' : msg.message});
-
+            message.push({'nickname' : msg.nickname , 'content' : msg.message});
             this.setState({messageList : message });
         });
     }
@@ -140,25 +117,82 @@ class Char extends React.Component{
 
     submitRoomName = () => {
         let rommName = (this.roomName.current.value == '') ? '' : this.roomName.current.value;
+        let nickname = this.messageName.current.value;
 
+        var message = this.state.messageList;
         if(rommName.length > 0){
             let data = {
                 'mUid' : 1,
                 'roomName' : rommName,
+                'nickname' : nickname,
             }
-            socket.emit('create room', data);
 
-            socket.on('join room', (data) => {
-                if(data.state == '0000'){
-                    this.setState({'roomStatus' : true, 'roomName' : rommName });
-                    alert(data.message);
-                }else {
-                    this.setState({'roomStatus' : true, 'roomName' : rommName });
-                    alert(data.message);
-                }
-            });
+            if(nickname.length == 0){
+                return;
+            }
+
+            // 방생성은 같은방일ㄸ ㅐ한번 
+            if(this.state.roomName != rommName && this.state.nickname != nickname){
+                socket.emit('create room', data);
+
+            
+                socket.on('join room', (data) => {
+
+                    console.log(data);
+                    message.push({'nickname' : 'join' , 'content' : data.message});
+                    if(data.status == '0000'){
+                        document.getElementById('content').style.display = 'block';
+    
+                        this.setState({
+                            status : true,
+                            'roomStatus' : true, 
+                            'roomName' : rommName, 
+                            messageList : message });
+                    }else {
+                        document.getElementById('content').style.display = 'block';
+                        this.setState({
+                            status : true,
+                            'roomStatus' : true, 
+                            'roomName' : rommName, 
+                            messageList : message });
+                    }
+                });
+            }
+
         }else {
             alert('방 정보를 입력하세요');
+        }
+        
+    }
+
+    levalRoom = () => {
+        var message = this.state.messageList;
+        console.log(this.state.roomName);
+        if(this.state.roomName != ''){
+            console.log(111);
+            socket.emit('leval room', this.state);
+            
+            socket.on('out room', (data) => {
+
+                console.log(data);
+                // message.push({'nickname' : 'join' , 'content' : data.message});
+                // if(data.status == '0000'){
+                //     document.getElementById('content').style.display = 'block';
+
+                //     this.setState({
+                //         status : true,
+                //         'roomStatus' : true, 
+                //         'roomName' : rommName, 
+                //         messageList : message });
+                // }else {
+                //     document.getElementById('content').style.display = 'block';
+                //     this.setState({
+                //         status : true,
+                //         'roomStatus' : true, 
+                //         'roomName' : rommName, 
+                //         messageList : message });
+                // }
+            });
         }
         
     }
@@ -182,16 +216,18 @@ class Char extends React.Component{
                 <div>
                     <div>
                         <div>
+                            <button 
+                                onClick={() => { this.levalRoom()}}
+                            >나가기
+                            </button>
+                        </div>
+                        <div>
                             <input
                                 ref={this.roomName}
                                 disabled = {roomStatus ? "disabled" : false}
                                 onKeyDown={(e) => { this.keyDownFuc(e, 'room');}}
                             >
                             </input>
-                            <button 
-                                onClick={() => { this.submitRoomName()}}
-                            >방 생성
-                            </button>
                         </div>
                         <div>
                             <input 
@@ -199,11 +235,10 @@ class Char extends React.Component{
                                 disabled = {status ? "disabled" : false}
                                 value = {name}
                                 onChange = {e => this.onTodoChange(e.target.value)}
-                                onKeyDown={(e) => { this.keyDownFuc(e, 'nick');}}
                                 >
                             </input>
                             <button 
-                                onClick={() => { this.nicknameSend()}}
+                                onClick={() => { this.submitRoomName()}}
                             >닉네임 등록
                             </button>
                         </div>

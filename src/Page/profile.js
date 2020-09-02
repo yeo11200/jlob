@@ -72,6 +72,10 @@ export default class proFile extends React.Component {
         console.log(11);
         window.location.href = `/about/${e}`;
     }
+
+    profileView = (id) => {
+        window.location.href = `/about/view?id=${id}`;
+    }
     render(){
         const {profile, isLoding } = this.state;
 
@@ -141,15 +145,13 @@ export default class proFile extends React.Component {
                                     // react에서는 {} 안에는 습관처럼 return을 적자
                                     value.project.map((value1, index) => {
                                         return (
-                                            <Link to={`/about/${value1.pro_id}`}>
-                                                <ul>
-                                                    <span className="projectTitle">{index + 1}{value1.pro_title}</span>
-                                                    <li>{value1.pro_content}</li>
-                                                    <li>{Fun.dateYmdFilter(value1.pro_start_date)}</li>
-                                                    <li>{Fun.dateYmdFilter(value1.pro_end_date)}</li>
-                                                    <li>{value1.pro_skill_set}</li>
-                                                </ul>
-                                            </Link>
+                                            <ul onClick={() => { this.profileView(value1.pro_id) }}>
+                                                <span className="projectTitle">{index + 1}{value1.pro_title}</span>
+                                                <li>{value1.pro_content}</li>
+                                                <li>{Fun.dateYmdFilter(value1.pro_start_date)}</li>
+                                                <li>{Fun.dateYmdFilter(value1.pro_end_date)}</li>
+                                                <li>{value1.pro_skill_set}</li>
+                                            </ul>
                                         )
                                     })
                                 }
