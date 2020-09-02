@@ -170,30 +170,37 @@ class Char extends React.Component{
         console.log(this.state.roomName);
         if(this.state.roomName != ''){
             console.log(111);
-            socket.emit('leval room', this.state);
-            
-            socket.on('out room', (data) => {
-
-                console.log(data);
-                // message.push({'nickname' : 'join' , 'content' : data.message});
-                // if(data.status == '0000'){
-                //     document.getElementById('content').style.display = 'block';
-
-                //     this.setState({
-                //         status : true,
-                //         'roomStatus' : true, 
-                //         'roomName' : rommName, 
-                //         messageList : message });
-                // }else {
-                //     document.getElementById('content').style.display = 'block';
-                //     this.setState({
-                //         status : true,
-                //         'roomStatus' : true, 
-                //         'roomName' : rommName, 
-                //         messageList : message });
-                // }
-            });
+            socket.emit('client disconnect', this.state);
         }
+
+        socket.on('client disconnect2', (data) => {
+            message.push(data.msg);
+            console.log(data);
+                this.setState({
+                    status : false,
+                    'roomStatus' : false, 
+                    'roomName' : '', 
+                    messageList : message 
+                });
+
+            // message.push({'nickname' : 'join' , 'content' : data.message});
+            // if(data.status == '0000'){
+            //     document.getElementById('content').style.display = 'block';
+
+            //     this.setState({
+            //         status : true,
+            //         'roomStatus' : true, 
+            //         'roomName' : rommName, 
+            //         messageList : message });
+            // }else {
+            //     document.getElementById('content').style.display = 'block';
+            //     this.setState({
+            //         status : true,
+            //         'roomStatus' : true, 
+            //         'roomName' : rommName, 
+            //         messageList : message });
+            // }
+        });
         
     }
     render(){
