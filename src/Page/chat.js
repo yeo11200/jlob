@@ -15,7 +15,7 @@ class Char extends React.Component{
 
         console.log(props.match);
 
-        console.log(window.location.search);
+        console.log(queryString.parse(window.location.search));
         console.log(Math.round(Math.random() * 1000));
         
         
@@ -138,7 +138,6 @@ class Char extends React.Component{
             
                 socket.on('join room', (data) => {
 
-                    console.log(data);
                     message.push({'nickname' : 'join' , 'content' : data.message});
                     if(data.status == '0000'){
                         document.getElementById('content').style.display = 'block';
@@ -167,21 +166,22 @@ class Char extends React.Component{
 
     levalRoom = () => {
         var message = this.state.messageList;
-        console.log(this.state.roomName);
+        console.log(this.state);
         if(this.state.roomName != ''){
             console.log(111);
             socket.emit('client disconnect', this.state);
         }
 
         socket.on('client disconnect2', (data) => {
-            message.push(data.msg);
-            console.log(data);
-                this.setState({
-                    status : false,
-                    'roomStatus' : false, 
-                    'roomName' : '', 
-                    messageList : message 
-                });
+            
+            message.push({'nickname' : data.status , 'content' : data.msg});
+
+            this.setState({
+                status : false,
+                'roomStatus' : false, 
+                'roomName' : '', 
+                messageList : message 
+            });
 
             // message.push({'nickname' : 'join' , 'content' : data.message});
             // if(data.status == '0000'){

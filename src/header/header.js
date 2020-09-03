@@ -58,7 +58,7 @@ class Header extends React.Component{
                     </li>
 
                     <li>
-                         <button>로그인</button>
+                         <Link to="/login">로그인</Link>
                     </li>
                 </ul>
             </div>

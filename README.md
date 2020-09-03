@@ -232,3 +232,31 @@ npm install --save react-helmet @types/react-helmet
 React.lazy( () => import aaaa from './route/React');
 
 ```
+
+#### socal login
+```js
+/**
+ *  kakao login 추가 
+ **/
+npm install react-kakao-login
+
+/**
+ * google login 추가
+ * */
+npm install react-google-login
+
+/**
+ * facebook login 
+ * **/
+npm install react-facebook-login --save --force
+
+/**
+ * naver는 따로 지원을 안해줘서 선언을 해야한다.
+ * 
+ * 외부 스크립트를 불러내기위한 npm 
+ * npm 에 패키지를 찾으십시오.
+ * 내 프로젝트에서 패키지를 다운로드하고 설치하십시오 (npm install typekit).
+ * import 내가 필요로하는 패키지 (import Typekit from 'typekit';)
+ * */
+<script type="text/javascript" src="[https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js](https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js)" charset="utf-8"></script>
+```
