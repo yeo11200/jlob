@@ -220,3 +220,15 @@ npm install --save react-helmet @types/react-helmet
 
 <Route path="/profile?:pa&:page&:search" component={Compornt}></Route>
 ```
+
+#### react 컴포넌트가 불리고 나서 import
+```js
+// React 함수안에 lazy함수가 별도로 있다. lazy란 불리고 나서 사용을 하는 것을 지칭하는데 주로 이미지를 부를 때 사용을 한다
+
+// 그래서 js 파일 같은 경우도 컴포넌트가 불린후 lazy를 주로 사용한다.
+
+// ex)
+
+React.lazy( () => import aaaa from './route/React');
+
+```
