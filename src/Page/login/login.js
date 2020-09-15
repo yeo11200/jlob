@@ -19,6 +19,10 @@ class Login extends React.Component{
         let aa = new naver();
         console.log(aa);
     }
+    
+    responseFacebook = (response) => {
+      console.log(response);
+    }
 
     render(){
 
@@ -30,6 +34,13 @@ class Login extends React.Component{
                     getProfile={true}
                 />
                 <h2>aaaaaa</h2>
+            
+              <FacebookLogin
+                appId="1088597931155576"
+                autoLoad={true}
+                fields="name,email,picture"
+                onClick={componentClicked}
+                callback={responseFacebook} />
             </div>
         )
     }
