@@ -8,7 +8,6 @@ import {
   Link 
 } from 'react-router-dom';
 
-import { useHistory  } from 'react-router'
 import Header from './header/header';
 
 import Moduel from './content/moduel';
