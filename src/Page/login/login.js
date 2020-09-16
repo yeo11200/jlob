@@ -1,8 +1,7 @@
 import React  from 'react';
 import styled from 'styled-components';
 import KaKaoLogin from 'react-kakao-login';
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-
+import FacebookLogin from 'react-facebook-login';
 import '../../css/common.css';
 import { func } from 'prop-types';
 
@@ -20,6 +19,10 @@ class Login extends React.Component{
 
         this.setState({login : 'Y'})
     }
+    
+    responseFacebook = (response) => {
+      console.log(response);
+    }
 
     exitClose = function(){
         this.props.history.goBack();
@@ -30,47 +33,19 @@ class Login extends React.Component{
         const { onLogin } = this.props;
         return(
             <div>
-                <div id="popup" className={(login == 'Y') ? 'on' : ''}>
-                    <div id="popmenu">
-                        <p>안녕하세요!</p>
-                        <div className="exit" onClick={() => this.exitClose()}>닫기</div>
-
-                        <div>
-                            <KaKaoBtn
-                                jsKey={'3a793d10b75312cba5600b958e64f3ff'}
-                                buttonText='카카오 계정으로 로그인'
-                                onSuccess={this.responseKaKao}
-                                onFailure={this.responseFail}
-                                getProfile={true}
-                            />
-
-                            <FacebookLogin
-                                appId="2688206104728088"
-                                autoLoad={false}
-                                fields="name,first_name,last_name,email"
-                                callback={onLogin}
-                                render={renderProps => (
-                                    <div onClick={renderProps.onClick}>facebook</div>
-                                )}
-
-                                className="facebook"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-            <div className="modal">
-                
-                  <label className="modal_bg" for="open-pop"></label>
-                    <div className="modal_inner">
-                        <label className="modal_close" for="open-pop"></label>
-                        <h2>popup 제목</h2>
-                        <p>내용</p>
-                        <div>
-                            
-                        </div>
-                    </div>
-            </div>
+                <KaKaoBtn
+                    jsKey={'06cbf36cb0b25ef2af618a4d87fb333f'}
+                    buttonText='카카오 계정으로 로그인'
+                    getProfile={true}
+                />
+                <h2>aaaaaa</h2>
+            
+              <FacebookLogin
+                appId="1088597931155576"
+                autoLoad={true}
+                fields="name,email,picture"
+                onClick={componentClicked}
+                callback={responseFacebook} />
             </div>
         )
     }
