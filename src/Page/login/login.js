@@ -1,35 +1,76 @@
 import React  from 'react';
 import styled from 'styled-components';
 import KaKaoLogin from 'react-kakao-login';
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+
+import '../../css/common.css';
+import { func } from 'prop-types';
 
 class Login extends React.Component{
 
     constructor(props){
         super(props);
+
+        console.log('login');
+
+        this.state = {login : ''};
     }
 
     componentDidMount(){
-        const script = document.createElement('script');
 
-        script.src = 'https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js';
-        script.async = true;
-
-        document.body.appendChild(script);
-        
-        let aa = new naver();
-        console.log(aa);
+        this.setState({login : 'Y'})
     }
 
+    exitClose = function(){
+        this.props.history.goBack();
+    }
     render(){
 
+        let {login} = this.state;
+        const { onLogin } = this.props;
         return(
             <div>
-                <KaKaoBtn
-                    jsKey={'06cbf36cb0b25ef2af618a4d87fb333f'}
-                    buttonText='카카오 계정으로 로그인'
-                    getProfile={true}
-                />
-                <h2>aaaaaa</h2>
+                <div id="popup" className={(login == 'Y') ? 'on' : ''}>
+                    <div id="popmenu">
+                        <p>안녕하세요!</p>
+                        <div className="exit" onClick={() => this.exitClose()}>닫기</div>
+
+                        <div>
+                            <KaKaoBtn
+                                jsKey={'3a793d10b75312cba5600b958e64f3ff'}
+                                buttonText='카카오 계정으로 로그인'
+                                onSuccess={this.responseKaKao}
+                                onFailure={this.responseFail}
+                                getProfile={true}
+                            />
+
+                            <FacebookLogin
+                                appId="2688206104728088"
+                                autoLoad={false}
+                                fields="name,first_name,last_name,email"
+                                callback={onLogin}
+                                render={renderProps => (
+                                    <div onClick={renderProps.onClick}>facebook</div>
+                                )}
+
+                                className="facebook"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+            <div className="modal">
+                
+                  <label className="modal_bg" for="open-pop"></label>
+                    <div className="modal_inner">
+                        <label className="modal_close" for="open-pop"></label>
+                        <h2>popup 제목</h2>
+                        <p>내용</p>
+                        <div>
+                            
+                        </div>
+                    </div>
+            </div>
             </div>
         )
     }
