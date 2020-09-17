@@ -1,4 +1,5 @@
 # react + next
+## git pages에 배포가 안되서 heroku 배포 선택
 
 ### next를 사용하는 이유
 #### 1. csr은 spa로 페이지를 하나를 이용해서 페이지를 사용하는데, SEO에 대해서 취약점이 있다.
