@@ -1,13 +1,18 @@
-import Header from '../componets/_includes/Header'
-import Footer from '../componets/_includes/Footer'
+import {useRouter} from 'next/router';
 
-const Index = () => (
-    <div>
-        <Header/>
+import Layout from '../componets/_includes/Layout';
+
+const Index = () => {
+  const router = useRouter();
+  const {pagename} = router.query;
+  console.log(router.query);
+
+  return(
+    <Layout>
       <p>Hello Next.js</p>
-      <Footer/>
-    </div>
-  );
+    </Layout>
+  )
+};
   
   export default Index;
   
