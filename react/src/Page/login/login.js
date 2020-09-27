@@ -40,12 +40,12 @@ class Login extends React.Component{
                 />
                 <h2>aaaaaa</h2>
             
-              <FacebookLogin
+              {/* <FacebookLogin
                 appId="1088597931155576"
                 autoLoad={true}
                 fields="name,email,picture"
-                onClick={componentClicked}
-                callback={responseFacebook} />
+                // onClick={componentClicked}
+                // callback={responseFacebook} /> */}
             </div>
         )
     }
