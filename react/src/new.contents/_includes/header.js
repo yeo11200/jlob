@@ -12,6 +12,8 @@ class Header extends React.Component{
                 flexDirection : 'column'
             }
         }
+
+        console.log(classname);
         return(
             <AppBar position="static">
                 {/* value={value} onChange={handleChange} */}
