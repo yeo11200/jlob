@@ -64,9 +64,9 @@ class Profile extends React.Component{
             this.createData('Cupcake', 305, 3.7, 67, 4.3),
             this.createData('Gingerbread', 356, 16.0, 49, 3.9),
           ];
-        let items = this.state;
+        let { itemsList, resposnseCode } = this.state;
 
-        console.log(items);
+        console.log(itemsList);
         return(
             <div>
                 <h2>이력서</h2>
@@ -88,15 +88,13 @@ class Profile extends React.Component{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.name} onClick={ () => this.goToView(row.name)}>
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
+                            {itemsList.map((value, index) => (
+                                <TableRow key={value.mc_compony} onClick={ () => this.goToView(value.mc_compony)}>
+                                    <TableCell component="th" scope="rows">
+                                        {value.mc_compony}
                                     </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
+                                    <TableCell align="right">{value.mc_position}</TableCell>
+                                    <TableCell align="right">{value.mc_project_name}</TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>
