@@ -7,6 +7,7 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody
 import { FirstPage, LastPage, KeyboardArrowRight, KeyboardArrowLeft} from '@material-ui/icons';
 
 import * as Common from '../../../common';
+import * as Fun from '../../../fun';
 
 class Profile extends React.Component{
 
@@ -26,6 +27,8 @@ class Profile extends React.Component{
 
     getProfileData = async () => {
         
+        var  totalCareer = [];
+
         await axios.get(Common.API_SERVER+'/profile').then( response => {
             
             var items = response.data;
@@ -36,10 +39,18 @@ class Profile extends React.Component{
             console.log(resposnseCode);
             if(resposnseCode === 200){
 
-                console.log(items.data);
-                this.setState({itemsList : items.data.carrer});
+                var itemsList = items.data.carrer;
 
-                console.log(items.data.carrer);
+                for(var i in itemsList){
+                    console.log(itemsList[i]);
+
+                    totalCareer.push({ idx : itemsList[i].mc_idx , start : itemsList[i].mc_startdate, end : itemsList[i].mc_enddate});
+                }
+                this.setState({itemsList : itemsList});
+
+
+                Fun.callTest(totalCareer);
+                
             }else{
                 this.setState({itemsList : []});
             }
@@ -55,36 +66,26 @@ class Profile extends React.Component{
         console.log(items);
       }
     render(){
-        console.log('Profile');
-          
-          const rows = [
-            this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-            this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            this.createData('Eclair', 262, 16.0, 24, 6.0),
-            this.createData('Cupcake', 305, 3.7, 67, 4.3),
-            this.createData('Gingerbread', 356, 16.0, 49, 3.9),
-          ];
-        let { itemsList, resposnseCode } = this.state;
 
-        console.log(itemsList);
+        let { itemsList, resposnseCode } = this.state;
         return(
             <div>
                 <h2>이력서</h2>
-                <Person></Person>        
+                <Person></Person>
+
                 {/* 자기 소개서나 프로젝트 별로 작업 할 곳 */}
 
-
                 <div>
-                    <h2>경력사항</h2>
+                    <h2>경력사항</h2> <div style={{textAlign: 'right'}}>총경력 : {Fun.a()}</div>
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Dessert (100g serving)</TableCell>
-                                    <TableCell align="right">Calories</TableCell>
-                                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                                    <TableCell>회사명 </TableCell>
+                                    <TableCell align="right">직군</TableCell>
+                                    <TableCell align="right">프로젝트</TableCell>
+                                    <TableCell align="right">입사 일</TableCell>
+                                    <TableCell align="right">종료 일</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -95,6 +96,8 @@ class Profile extends React.Component{
                                     </TableCell>
                                     <TableCell align="right">{value.mc_position}</TableCell>
                                     <TableCell align="right">{value.mc_project_name}</TableCell>
+                                    <TableCell align="right">{Fun.dateYmdFilter(value.mc_startdate)}</TableCell>
+                                    <TableCell align="right">{Fun.dateYmdFilter(value.mc_enddate)}</TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>

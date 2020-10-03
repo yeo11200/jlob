@@ -48,3 +48,8 @@ export function dateYmdFilter(date){
 
     return dateYmd;
 }
+
+export function callTest(name){
+
+    console.log(arguments);
+}
