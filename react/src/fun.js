@@ -53,3 +53,18 @@ export function callTest(name){
 
     console.log(arguments);
 }
+
+export function splitComma(items){
+
+    var splitComma = items.split(',');
+
+    console.log(splitComma);
+
+    var html = '';
+    for(var i in splitComma){
+        console.log(splitComma[i]);
+
+        html += '<li>'+splitComma[i]+'</li>';
+    }
+    return html;
+}

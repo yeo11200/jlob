@@ -33,6 +33,16 @@ class person extends React.Component{
                         </CardContent>
                     </CardActionArea>
                 </Card>
+
+                <div>
+                        <span>Blog : </span><a href="https://blog.naver.com/sksksms2">https://blog.naver.com/sksksms2</a>
+                    </div>
+                    <div>
+                        <span>GitHub : </span><a href="https://github.com/yeo11200">https://github.com/yeo11200</a>
+                    </div>
+                    <div>
+                        <span>Contact : </span><a href="mailto:yeo11200@hanmail.net">yeo11200@hanmail.net</a>
+                    </div>
             </div>
         )
     }

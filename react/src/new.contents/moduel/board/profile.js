@@ -95,7 +95,8 @@ class Profile extends React.Component{
                                         {value.mc_compony}
                                     </TableCell>
                                     <TableCell align="right">{value.mc_position}</TableCell>
-                                    <TableCell align="right">{value.mc_project_name}</TableCell>
+                                    <TableCell align="right"><div dangerouslySetInnerHTML={{__html : Fun.splitComma(value.mc_project_name)}}></div></TableCell>
+                                    {/* <TableCell align="right">{value.mc_project_name}</TableCell> */}
                                     <TableCell align="right">{Fun.dateYmdFilter(value.mc_startdate)}</TableCell>
                                     <TableCell align="right">{Fun.dateYmdFilter(value.mc_enddate)}</TableCell>
                                 </TableRow>
