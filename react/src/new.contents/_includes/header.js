@@ -18,8 +18,8 @@ class Header extends React.Component{
             <AppBar position="static">
                 {/* value={value} onChange={handleChange} */}
                 <Tabs aria-label="simple tabs example">
-                    <Link to="/test" style={classname.link}><Tab label="이력서"></Tab></Link>
-                    <Link to="/test2" style={classname.link}><Tab label="블로그 기술스펙"></Tab></Link>
+                    <Link exact to="/test" style={classname.link}><Tab label="이력서"></Tab></Link>
+                    <Link exact to="/test2" style={classname.link}><Tab label="블로그 기술스펙"></Tab></Link>
                     <Link to="/test3" style={classname.link}><Tab label="채팅"></Tab></Link>
                 </Tabs>
             </AppBar>

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import Person from './profileComponent/person';
+import ProfileView from './profileComponent/profile.view';
 
 import ReactLoading from 'react-loading';
 import { TableContainer, Table, TableHead, TableRow, TableCell, Paper, TableBody } from '@material-ui/core';
@@ -64,6 +65,7 @@ class Profile extends React.Component{
 
       goToView = function(items){
         console.log(items);
+        window.location.href = `/test2/view?id=${items}`;
       }
     render(){
 
@@ -77,33 +79,24 @@ class Profile extends React.Component{
 
                 <div>
                     <h2>경력사항</h2> <div style={{textAlign: 'right'}}>총경력 : {Fun.a()}</div>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>회사명 </TableCell>
-                                    <TableCell align="right">직군</TableCell>
-                                    <TableCell align="right">프로젝트</TableCell>
-                                    <TableCell align="right">입사 일</TableCell>
-                                    <TableCell align="right">종료 일</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {itemsList.map((value, index) => (
-                                <TableRow key={value.mc_compony} onClick={ () => this.goToView(value.mc_compony)}>
-                                    <TableCell component="th" scope="rows">
-                                        {value.mc_compony}
-                                    </TableCell>
-                                    <TableCell align="right">{value.mc_position}</TableCell>
-                                    <TableCell align="right"><div dangerouslySetInnerHTML={{__html : Fun.splitComma(value.mc_project_name)}}></div></TableCell>
-                                    {/* <TableCell align="right">{value.mc_project_name}</TableCell> */}
-                                    <TableCell align="right">{Fun.dateYmdFilter(value.mc_startdate)}</TableCell>
-                                    <TableCell align="right">{Fun.dateYmdFilter(value.mc_enddate)}</TableCell>
-                                </TableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    
+                        <table aria-label="simple table">
+                            <tbody>
+                                <tr>
+                                    <th width="50">회사명 </th>
+                                    <th width="300" align="left">직군</th>
+                                    <th width="100" align="right">프로젝트</th>
+                                    <th width="100"align="right">입사 일</th>
+                                    <th width="100" align="right">종료 일</th>
+                                </tr>
+                                {itemsList.map((value, index) => (
+                                    
+                                    <ProfileView key={value.mc_idx} row={value} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />
+                                    
+                                ))}
+                                </tbody>
+                        </table>
+
                 </div>
             </div>
         )

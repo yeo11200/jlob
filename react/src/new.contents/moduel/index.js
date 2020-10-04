@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Profile } from '../route/router';
+import { Profile, ProfileView } from '../route/router';
 
 class Index extends React.Component{
     render(){
@@ -19,6 +19,7 @@ class Index extends React.Component{
                     <h3>Render Test</h3>
                 )}></Route>
                 <Route path="/test2" component={ Profile }></Route>
+                <Route path="/test2/view?id=:id" component={ ProfileView }></Route>
             </div>
         )
     }
