@@ -79,23 +79,26 @@ class Profile extends React.Component{
 
                 <div>
                     <h2>경력사항</h2> <div style={{textAlign: 'right'}}>총경력 : {Fun.a()}</div>
-                    
-                        <table aria-label="simple table">
-                            <tbody>
-                                <tr>
-                                    <th width="50">회사명 </th>
-                                    <th width="300" align="left">직군</th>
-                                    <th width="100" align="right">프로젝트</th>
-                                    <th width="100"align="right">입사 일</th>
-                                    <th width="100" align="right">종료 일</th>
-                                </tr>
-                                {itemsList.map((value, index) => (
-                                    
-                                    <ProfileView key={value.mc_idx} row={value} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />
-                                    
-                                ))}
-                                </tbody>
-                        </table>
+                    <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>회사명 </TableCell>
+                                    <TableCell align="left">직군</TableCell>
+                                    <TableCell align="right">프로젝트</TableCell>
+                                    <TableCell align="right">입사 일</TableCell>
+                                    <TableCell align="right">종료 일</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {itemsList.map((value, index) => (
+                                
+                                <ProfileView key={value.mc_idx} row={value} onRemove={this.handleRemove} onSelectRow={this.handleSelectRow} />
+                                
+                            ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
 
                 </div>
             </div>

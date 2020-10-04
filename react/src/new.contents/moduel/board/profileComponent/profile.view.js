@@ -16,16 +16,16 @@ class ProfileView extends React.Component{
 
     render(){
         return(
-            <tr>
-                <td width="50" component="th" scope="rows">
+            <TableRow key={this.props.row.mc_compony} onClick={ () => this.goToView(this.props.row.mc_compony)}>
+                <TableCell component="th" scope="rows">
                     {this.props.row.mc_compony}
-                </td>
-                <td width="300" align="right">{this.props.row.mc_position}</td>
-                <td width="100"align="right"><div dangerouslySetInnerHTML={{__html : Fun.splitComma(this.props.row.mc_project_name)}}></div></td>
+                </TableCell>
+                <TableCell align="right">{this.props.row.mc_position}</TableCell>
+                <TableCell align="right"><div dangerouslySetInnerHTML={{__html : Fun.splitComma(this.props.row.mc_project_name)}}></div></TableCell>
                 {/* <TableCell align="right">{value.mc_project_name}</TableCell> */}
-                <td width="100" align="right">{Fun.dateYmdFilter(this.props.row.mc_startdate)}</td>
-                <td width="100" align="right">{Fun.dateYmdFilter(this.props.row.mc_enddate)}</td>
-            </tr>
+                <TableCell align="right">{Fun.dateYmdFilter(this.props.row.mc_startdate)}</TableCell>
+                <TableCell align="right">{Fun.dateYmdFilter(this.props.row.mc_enddate)}</TableCell>
+            </TableRow>
         )
     }
 }
