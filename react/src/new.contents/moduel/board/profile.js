@@ -15,6 +15,8 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
 
+        console.log(props);
+
         this.state = {
             itemsList : [],
             resposnseCode : null,
@@ -59,14 +61,7 @@ class Profile extends React.Component{
         })
 
     }
-      createData = function(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
-      }
 
-      goToView = function(items){
-        console.log(items);
-        window.location.href = `/test2/view?id=${items}`;
-      }
     render(){
 
         let { itemsList, resposnseCode } = this.state;

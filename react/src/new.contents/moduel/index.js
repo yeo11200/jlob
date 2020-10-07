@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Profile, ProfileView } from '../route/router';
+import { Profile, ProfileDetail } from '../route/router';
 
 class Index extends React.Component{
     render(){
@@ -18,8 +18,9 @@ class Index extends React.Component{
                 <Route path="/test" render={() => (
                     <h3>Render Test</h3>
                 )}></Route>
-                <Route path="/test2" component={ Profile }></Route>
-                <Route path="/test2/view?id=:id" component={ ProfileView }></Route>
+
+                    <Route exact path="/test2" component={ Profile }></Route>
+                    <Route path="/test2/id=:id" component={ ProfileDetail }></Route>
             </div>
         )
     }
