@@ -79,7 +79,7 @@ class Profile extends React.Component{
                             <TableHead>
                                 <TableRow>
                                     <TableCell>회사명 </TableCell>
-                                    <TableCell align="left">직군</TableCell>
+                                    <TableCell align="center">직군</TableCell>
                                     <TableCell align="right">프로젝트</TableCell>
                                     <TableCell align="right">입사 일</TableCell>
                                     <TableCell align="right">종료 일</TableCell>
