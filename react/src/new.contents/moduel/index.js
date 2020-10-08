@@ -20,7 +20,7 @@ class Index extends React.Component{
                 )}></Route>
 
                     <Route exact path="/test2" component={ Profile }></Route>
-                    <Route path="/test2/id=:id" component={ ProfileDetail }></Route>
+                    <Route path="/test2/dita" component={ ProfileDetail }></Route>
             </div>
         )
     }

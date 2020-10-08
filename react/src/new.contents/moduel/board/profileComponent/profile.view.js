@@ -26,7 +26,7 @@ class ProfileView extends React.Component{
                 <TableCell component="th" scope="rows">
                     {this.props.row.mc_compony}
                 </TableCell>
-                <TableCell align="right"><Link to={`/test2/id=${this.props.row.mc_idx}`}>{this.props.row.mc_position}</Link></TableCell>
+                <TableCell align="right"><Link to={`/test2/dita?id=${this.props.row.mc_idx}`} style={{textDecoration: 'none'}}>{this.props.row.mc_position}</Link></TableCell>
                 <TableCell align="right"><div dangerouslySetInnerHTML={{__html : Fun.splitComma(this.props.row.mc_project_name)}}></div></TableCell>
                 {/* <TableCell align="right">{value.mc_project_name}</TableCell> */}
                 <TableCell align="right">{Fun.dateYmdFilter(this.props.row.mc_startdate)}</TableCell>
