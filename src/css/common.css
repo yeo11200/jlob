@@ -1,0 +1,388 @@
+/* header 영역 css */
+div > ul.header-ui { background-color: aquamarine;}
+div > ul.header-ui > li { list-style-type:none; display: inline; margin-left: 2rem;}
+div > ul.header-ui > li.on{ background-color: beige; color: brown; }
+
+/* blog info 영역 css */
+div > div.blog-info > dl { background-color: grey; }
+div > div.blog-info > dl > dd { font-weight: 700; color: rgb(110, 103, 40); display: inline; margin-left: 2rem; }
+div > div.blog-info > dd > dd.on { background-color: lawngreen; font-weight: 1000; color: lemonchiffon; }
+div > div.blog-connenct > span { display: none; overflow: hidden; }
+div > div.blog-connenct > span.over { display: inline-block; overflow: scroll; }
+
+/* div 영역잡고 선 스타일 내기 
+border: 선굵기, style, color
+border-radius : 외곽 선 둥근 모서리
+*/
+div > div.profile-info > div.profile-about-me.on > dl > dd > p > code {font-size: 10px; border-style: groove; border-color: dodgerblue;}
+div > div.profile-info > div.profile-about-me.on > dl > dd > div {
+    border: 1px outset gold; border-radius: 10px;
+    -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+/*RESET*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 17px 'Nanum Gothic', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #404040;
+}
+
+li {
+    list-style: none;
+}
+
+/*BODY*/
+
+/*팝업창*/
+#popup {
+    display: none; /*숨기기*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+#popup.on {
+    display: block; /*숨기기*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+#popmenu {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    background: #fff;
+}
+
+#popmenu p {
+    margin-top: 80px;
+}
+
+.exit {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%,0);
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #007AAE;
+    cursor: pointer;
+}
+
+/*본문내용*/
+#contents {
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    color: #fff;
+    background: #555;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration:'none';
+    color : 'black';
+}
+
+.MuiPaper-rounded.on{
+    border: 3px solid red;
+    box-shadow: 10px 10px 10px gray;
+    margin: 10px;margin-bottom: 10px;
+}
+.sssss { margin-top: 10px;}
+dl { width:100%; overflow:hidden;} 
+dt { float:left; width:10%; /* adjust the width; make sure the total of both is 100% */ background:#007AAE; border-radius: 10px; text-align: center; margin-top: 1px; color: white;}
+dd { float:left; width:90%; /* adjust the width; make sure the total of both is 100% */ background:#fff; padding-left: 10px; margin-top: 1px;}
+
+@media screen and (min-width: 357px)and (max-width: 731px){
+    dl { width:100%; overflow:hidden;} 
+    dt { float:left; width:10%; /* adjust the width; make sure the total of both is 100% */ background:#007AAE; font-size: x-small; border-radius: 10px; text-align: center;} 
+    dd { float:left; width:90%; /* adjust the width; make sure the total of both is 100% */ background:#fff; font-size: x-small; }
+    dt.github { content :'깃허브'; text-indent:0px;}
+}
+
+
+button.submit-button.off{
+    border:none;
+    background-color: rgba(0, 0, 0, 0);
+    color:darkgray;
+    padding:5px;
+    margin-left: 5px;
+}
+
+button.submit-button.on{
+    border:none;
+    background-color: rgba(0, 0, 0, 0);
+    color:skyblue;
+    padding:5px;
+    margin-left: 5px;
+}
+
+button.submit-button.on:hover{
+    background-color: skyblue;
+    color:white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+*{margin: 0; padding: 0;}
+
+div.char-list {padding-bottom: 80px; margin-top: 10px;}
+div.char-list > ul {width: 100%; list-style: none;}
+div.char-list > ul li {width: 100%;}
+
+
+/** chat list의 기본적인 css
+left : 본인이 쓴 경우
+right : 상대방이 쓴 경우
+center : 방에 입장에 했을 경우 */
+div.char-list > ul li.left {text-align: left;}
+div.char-list > ul li.right {text-align: right;}
+div.char-list > ul li.center {
+    text-align: center; border: 1px solid #007AAE; background: aliceblue;
+    border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-top-left-radius: 5px;border-bottom-left-radius: 5px;
+}
+
+div.char-list > ul.on {overflow:auto; width: 100%; height: 150px;}
+
+/**
+* webkit-scrollbar : 스크롤 바 전체
+* webkit-scrollbar-thumb : 스크롤 바 위치 막대
+* webkit-scrollbar-track : 스크롤 바 위치 막대 제외 영역
+*/
+div.char-list > ul.on::-webkit-scrollbar{background:darkkhaki; width: 3px;}
+div.char-list > ul.on::-webkit-scrollbar-thumb {background:darkorange; width: 3px;}
+div.char-list > ul.on::-webkit-scrollbar-track  {background:slateblue; width: 1px;}
+
+div.char-list > ul li > div { font-size : 13px;}
+div.char-list > ul li > div.sender { margin: 10px 20px 0 20px; font-weight: 400; }
+div.char-list > ul li > div.message { 
+    display: inline-block; word-break:break-all; margin: 5px 20px; max-width: 75%; border: 1px solid #888; 
+    padding: 10px; border-radius: 5px; background-color: #FCFCFC; color: #555; text-align: left;}
+
+div.char-inpit div.char-textarea {border-top: 1px solid #F18C7E;}
+
+/*
+resize -> tag의 크기 조절을 막아준다.
+:focus -> input, textarea가 focus가 될 때의 CSS를 잡아준다 
+*/
+div.char-input > div.char-textarea.none {visibility: hidden; height: 0px;}
+div.char-input > div.char-textarea.on {visibility: visible; margin-top: 10px;}
+div.char-input > div.char-textarea > textarea {width: 100%; height: 80px; border: none; padding: 10px; font-size:10px; resize: none;}
+div.char-input div.char-textarea > textarea:focus{outline:none};
+
+div.char-input > div.none.here {visibility: visible;}
+div.char-input > div.on.here {visibility: hidden; height: 10px;}
+
+#toast {position: fixed;bottom: 30px;left: 50%;padding: 15px 20px;transform: translate(-50%, 10px);border-radius: 30px;overflow: hidden;font-size: .8rem;opacity: 0;visibility: hidden;transition: opacity .5s, visibility .5s, transform .5s;background: rgba(0, 0, 0, .35);color: #fff;z-index: 10000;}
+
+#toast.on {opacity: 1;visibility: visible;transform: translate(-50%, 0);}
+
+/*
+ 달력에 대한 css 
+*/
+
+
+/* css 큰 틀을 잡는 최상위 div */
+.test-layout{
+    width: 100%;
+    height: 80%;
+    border: 1px solid black;
+  }
+  /* this test-layout class for test it will be terminated */
+  .RCA-app-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .RCA-header-container{
+    flex-basis: 50px;
+    background-color: rgb(224, 215, 202);
+  }
+  
+  .RCA-calendar-container{
+    flex-grow: 1;
+    background-color: rgb(127, 184, 127);
+  }
+  
+  /* header */
+  .RCA-header-container{
+    flex-basis: 50px;
+    background-color: rgb(224, 215, 202);
+    display: flex;
+  
+  }
+  
+  /* 이동 버튼 */
+  .move-button{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+  }
+  
+  .icon{
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  
+  /* 뒤로가기 버튼 */
+  .left-img{
+    background-image : url('https://project-setting.s3.ap-northeast-2.amazonaws.com/back.png');
+    
+  }
+  /* 앞으로가기가기 버튼 */
+  .right-img{
+    background-image: url('https://project-setting.s3.ap-northeast-2.amazonaws.com/forword.png');
+  }
+  
+  .RCA-header-middle{
+    line-height: 50px;
+  }
+  
+  .RCA-header-calendarYM{
+    box-sizing: border-box;
+    padding-left: 5px;
+    flex-grow: 1;
+  }
+  
+  .RCA-header-today{
+    box-sizing: border-box;
+    padding-left: 5px;
+    flex-grow: 1;
+  }
+  
+  .RCA-header-buttons{
+    flex-basis: 120px;
+    padding-left: 0;
+    padding-top: 4px;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+  }
+  
+  .RCA-header-buttons li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+  }
+  
+  /* calendar component */
+   
+  .RCA-calendar-container{
+    flex-grow: 1;
+    background-color:  rgb(127, 184, 127)
+  }
+  
+  /* calendar-header */
+  
+  .RCA-calendar-date-header{
+    display: flex;
+    height: 50px;
+    background-color: green;
+  }
+  
+  .RCA-calendar-date-component{
+    width: 14.2857143%;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: rgb(107, 107, 108);
+    border: 0.1px solid white;
+    font-size : 1.5rem;
+    line-height: 50px;
+  }
+  
+  .RCA-calendar-date-component:nth-child(odd){
+    border-left : none;
+    border-right: none;
+  }
+  
+  .date-weekday{
+    color : rgba(255, 255, 255, 0.603)
+  }
+  
+  .date-sun{
+    color: tomato;
+  }
+  
+  .date-sat{
+    color: skyblue;
+  }
+  
+  .RCA-calendar-day-container{
+    flex-grow: 1;
+    display : flex;
+    flex-wrap: wrap;
+  }
+  
+  .RCA-calendar-day{
+    box-sizing: border-box;
+    position: relative;
+    flex-basis: 14.2857143%;
+    border: 0.1px solid white;
+    border-top: none;
+    background-color: rgb(225,224,224);
+  }
+  
+  .RCA-calendar-week{
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .RCA-calendar-day:nth-child(odd){
+    border-left : none;
+    border-right: none;
+  }
+  
+  .RCA-calendar-day-label{
+    display: inline-block;
+    font-size: 1.2rem;
+    /* position: absolute; */
+    text-align: center;
+    line-height: 25px;
+    top : 5px;
+    right: 5px;
+    height: 5rem;
+  }
+  
+  .date-weekday-label{
+    color : rgb(71, 71, 71)
+  }
+  
+  .date-notThisMonth{
+    color: white;
+  }
+  
+  
+  .selected label{
+    font-size: 1.2rem;
+    color: white;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(224, 62, 42);
+    border-radius: 100%;
+  }
+  /*
+   달력에 대한 css 
+  */
