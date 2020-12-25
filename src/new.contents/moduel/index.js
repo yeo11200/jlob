@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Profile, ProfileDetail, Main, Char, Schedule } from '../route/router';
+import { Profile, ProfileDetail, Main, Char, Schedule, Bible } from '../route/router';
 import Person from './board/profileComponent/person';
 
 
@@ -60,7 +60,7 @@ class Index extends React.Component{
                     <Route exact path="/test3" component={ Char }></Route>
                     <Route path="/test2/dita" component={ ProfileDetail }></Route>
                     <Route path="/schedule" component={ Schedule }></Route>
-
+                    <Route path="/bible" component={ Bible }></Route>
                     
             </div>
         )

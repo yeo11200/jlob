@@ -7,7 +7,7 @@ import {
   Router,
   Link 
 } from 'react-router-dom';
-
+ 
 import Header from './new.contents/_includes/header';
 
 import Index from './new.contents/moduel/index';

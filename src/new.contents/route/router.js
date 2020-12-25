@@ -3,3 +3,4 @@ export { default as ProfileDetail } from '../moduel/board/profileComponent/profi
 export { default as Main } from '../moduel/main/main';
 export { default as Char} from '../moduel/chat/char';
 export { default as Schedule} from '../moduel/schedule/Schedule';
+export { default as Bible} from '../moduel/bible/Bible';
