@@ -94,6 +94,8 @@ class Bible extends React.Component{
             'bible_id' : BIBLE_ID,
             'wiz_id' : WIZ_ID,
             'already' : 'Y',
+            'isLoding' : false,
+            'bible_yn' : 'Y'
         })
 
         this.getBibleApi();
