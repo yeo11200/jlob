@@ -40,8 +40,13 @@ class Schedule extends React.Component{
      */
     moveMonth = (month) => {
         this.setState({
-            calendarYM : this.state.calendarYM.add(month,'M')
+            calendarYM : this.state.calendarYM.add(month,'M'),
         })
+
+        console.log(this.state.calendarYM.format('YYYY-MM'));
+
+        let data = this.state.calendarYM.format('YYYY-MM');
+
     }
 
     /**
