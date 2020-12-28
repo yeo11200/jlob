@@ -4,7 +4,13 @@ import { AppBar, Tabs, Tab,  Toolbar, Typography, Button, IconButton} from '@mat
 import {  } from '@material-ui/icons'
 class Header extends React.Component{
 
+    
+    constructor(props){
+        super(props);
+    }
+
     render(){
+
         var classname = {
             link : {
                 color : '#ffffff',
@@ -13,7 +19,6 @@ class Header extends React.Component{
             }
         }
 
-        console.log(classname);
         return(
             <AppBar position="static">
                 {/* value={value} onChange={handleChange} */}
@@ -23,6 +28,9 @@ class Header extends React.Component{
                     <Link exact to="/test2" style={classname.link}><Tab label="이력서"></Tab></Link>
                     <Link to="/test3" style={classname.link}><Tab label="채팅"></Tab></Link>
                     <Link to="/schedule" style={classname.link}><Tab label="스케줄"></Tab></Link>
+                </Tabs>
+                <Tabs>
+                    <button onClick={ this.props.loginPopup }>로그인</button>
                 </Tabs>
             </AppBar>
         )

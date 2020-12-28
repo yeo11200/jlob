@@ -16,7 +16,7 @@ class Index extends React.Component{
 
         const nowRandomId = localStorage.getItem('TOKEN_ID');
 
-        console.log(randomId);
+        console.log(props);
 
         if(randomId !== nowRandomId){
             localStorage.setItem('TOKEN_ID', randomId);
@@ -28,6 +28,8 @@ class Index extends React.Component{
         console.log('Index');
         return(
             <div>
+
+                <h2>{ this.props.loginState }</h2>
                 <Person></Person>
                 {/**
                  * 해당 url에 대한 컴포넌트를 지정할 때 사용을 한다.

@@ -15,16 +15,34 @@ import Index from './new.contents/moduel/index';
 import '../src/css/common.css?v=2020';
 
 
-function App() {
+class App extends React.Component{
   
-  return (
-    // basename={process.env.PUBLIC_URL} : 기본적인 경로는 유지 됨
-    <Route className="container" basename={process.env.PUBLIC_URL} >
-      <div id="toast"></div>
-      <Header></Header>
-      <Index></Index>
-    </Route>
-  );
+  constructor(props){
+    super(props);
+
+    this.state = {
+      'aaaa' : 'aaa'
+    }
+  }
+  loginPopup = () => {
+    alert('1111');
+
+    this.setState({
+        'aaaa' : 'bbbb'
+    })
+  }
+
+  render(){
+    return (
+      // basename={process.env.PUBLIC_URL} : 기본적인 경로는 유지 됨
+      <Route className="container" basename={process.env.PUBLIC_URL} >
+        <div id="toast"></div>
+        <Header loginPopup={this.loginPopup}></Header>
+        <Index loginState={this.state.aaaa}></Index>
+      </Route>
+    );
+  }
+  
 }
 
 export default App;
