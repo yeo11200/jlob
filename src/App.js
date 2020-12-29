@@ -24,6 +24,10 @@ class App extends React.Component{
       'aaaa' : 'aaa'
     }
   }
+
+  /**
+   * 로그인팝업을 띄울 때 사용할 함수
+   */
   loginPopup = () => {
     alert('1111');
 

@@ -30,7 +30,7 @@ class Header extends React.Component{
                     <Link to="/schedule" style={classname.link}><Tab label="스케줄"></Tab></Link>
                 </Tabs>
                 <Tabs>
-                    <button onClick={ this.props.loginPopup }>로그인</button>
+                    <button className="modal-btn" onClick={ this.props.loginPopup }>로그인</button>
                 </Tabs>
             </AppBar>
         )
