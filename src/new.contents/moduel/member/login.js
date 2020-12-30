@@ -7,9 +7,25 @@ class Login extends React.Component{
 
         super(props);
 
+        this.state = {
+            popupState : 'login'
+        }
+    }
+
+    clickRadioState = function(state){
+
+        console.log(state);
+
+        this.setState({
+            popupState : state,
+        })
+
     }
 
     render(){
+
+        const { popupState } = this.state;
+
         return(
             <div>
                 login popup
@@ -19,11 +35,22 @@ class Login extends React.Component{
                             <h1>Login to Your Account</h1><br />
                             
                             <div class="radio-tab">
-                                <input type="radio" id="login"></input>
+                                <input 
+                                    type="radio" 
+                                    id="login" 
+                                    name="radio" 
+                                    onClick={ () => this.clickRadioState('login')}
+                                    checked={ popupState == 'login' ? 'checked' : ''}
+                                    />
                                 <label for="login">로그인</label>
 
-                                <input type="radio" id="submit"></input>
-                                <label for="submit">회원가입</label>
+                                <input 
+                                    type="radio" 
+                                    id="join" 
+                                    name="radio" 
+                                    onClick={ () => this.clickRadioState('join')}
+                                    checked={ popupState == 'join' ? 'checked' : ''} />
+                                <label for="join">회원가입</label>
                             </div>
                             <input type="text" name="user" placeholder="Username" />
                             <input type="password" name="pass" placeholder="Password" />

@@ -384,5 +384,42 @@ div.char-input > div.on.here {visibility: hidden; height: 10px;}
     border-radius: 100%;
   }
   /*
-   달력에 대한 css 
+  달력에 대한 css 
   */
+
+/*
+  input[type="radio"] : type 별로 별로도 지정이 가능하다.
+  name, data-변수
+*/
+div.radio-tab > input[type="radio"] {display: none;}
+
+/*
+  windth 값을 지정해주지않으면 auto로 지정
+*/
+div.radio-tab > label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbbbbb;
+  border : 1px solid transparent;
+  width: 50%;
+}
+
+div.radio-tab > label:hover {
+  color:#2e9cdf;
+  cursor: pointer;
+}
+
+/*
+  input에 다양한 옵션을 활용이 가능하다.
+
+  inpuㅅ이 checked가 될 경우 lable에 대한 css 추가
+*/
+div.radio-tab > input[type="radio"]:checked + label{
+  color: #555555;
+  border: 1px solid #dddddd;
+  border-top: 2px solid #2e9cdf;
+  border-bottom: 1px solid #ffffff;
+}
