@@ -4,4 +4,4 @@ export { default as Main } from '../moduel/main/main';
 export { default as Char} from '../moduel/chat/char';
 export { default as Schedule} from '../moduel/schedule/Schedule';
 export { default as Bible} from '../moduel/bible/Bible';
-export { default as Login} from '../moduel/member/login';
+export { default as Login} from '../moduel/member/member';

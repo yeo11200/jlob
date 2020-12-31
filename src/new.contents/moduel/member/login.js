@@ -1,71 +1,35 @@
 import React from 'react';
 
-
 class Login extends React.Component{
 
     constructor(props){
-
         super(props);
 
         this.state = {
-            popupState : 'login'
+            id : '',
+            pw : '',
         }
     }
 
-    clickRadioState = function(state){
-
-        console.log(state);
-
-        this.setState({
-            popupState : state,
-        })
-
+    componentDidMount(){
+        console.log(1);
     }
 
     render(){
 
-        const { popupState } = this.state;
-
         return(
             <div>
-                login popup
-                <div id="login-modal">
-                    <div class="modal-dialog">
-                        <div class="loginmodal-container">
-                            <h1>Login to Your Account</h1><br />
-                            
-                            <div class="radio-tab">
-                                <input 
-                                    type="radio" 
-                                    id="login" 
-                                    name="radio" 
-                                    onClick={ () => this.clickRadioState('login')}
-                                    checked={ popupState == 'login' ? 'checked' : ''}
-                                    />
-                                <label for="login">로그인</label>
-
-                                <input 
-                                    type="radio" 
-                                    id="join" 
-                                    name="radio" 
-                                    onClick={ () => this.clickRadioState('join')}
-                                    checked={ popupState == 'join' ? 'checked' : ''} />
-                                <label for="join">회원가입</label>
-                            </div>
-                            <input type="text" name="user" placeholder="Username" />
-                            <input type="password" name="pass" placeholder="Password" />
-                            <input type="submit" name="login" class="login loginmodal-submit" value="Login" />
-                            
-                            
-                            <div class="login-help">
-                                <a href="#">Register</a> - <a href="#">Forgot Password</a>
-                            </div>
-                        </div>
-                    </div>
+                <input type="text" name="user" placeholder="Username" />
+                <input type="password" name="pass" placeholder="Password" />
+                <input type="submit" name="login" class="login loginmodal-submit" value="Login" />
+                
+            
+                <div class="login-help">
+                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
                 </div>
             </div>
         )
     }
 }
 
-export default Login
+export default Login;
