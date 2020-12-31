@@ -21,18 +21,16 @@ class App extends React.Component{
     super(props);
 
     this.state = {
-      'aaaa' : 'aaa'
+      'loginYn' : 'N'
     }
   }
 
   /**
    * 로그인팝업을 띄울 때 사용할 함수
    */
-  loginPopup = () => {
-    alert('1111');
-
+  loginPopup = (state) => {
     this.setState({
-        'aaaa' : 'bbbb'
+        'loginYn' : state
     })
   }
 
@@ -42,7 +40,7 @@ class App extends React.Component{
       <Route className="container" basename={process.env.PUBLIC_URL} >
         <div id="toast"></div>
         <Header loginPopup={this.loginPopup}></Header>
-        <Index loginState={this.state.aaaa}></Index>
+        <Index loginState={this.state.loginYn} loginPopup={this.loginPopup}></Index>
       </Route>
     );
   }
