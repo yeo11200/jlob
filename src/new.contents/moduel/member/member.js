@@ -33,12 +33,14 @@ class Member extends React.Component{
 
         const { popupState } = this.state;
 
-        const { loginState } = this.props;
+        const { loginState, loginPopup } = this.props;
 
         return(
             <div>
                 <div id="login-modal" className={ loginState == 'Y' ? 'on' : ''}>
                     <div class="modal-dialog">
+
+                        <span className="close" onClick={() => loginPopup('N')}> &times;</span>
                         <div class="loginmodal-container">
                             <h1>Login to Your Account</h1><br />
                             
@@ -61,7 +63,7 @@ class Member extends React.Component{
                                 <label for="join">회원가입</label>
                             </div>
                             <div className={ (popupState == 'login' ? 'on' : '') + " state"}>
-                                <Login></Login>
+                                <Login changeState={ this.clickRadioState } loginState= { loginState }></Login>
                             </div>
                             <div className={ (popupState == 'join' ? 'on' : '') + " state"}>
                                 <Join></Join>
@@ -69,7 +71,7 @@ class Member extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className={(loginState == 'Y' ? 'on' : '') + ' dimmed'} onClick={() => this.clickTest('dimmend')}></div>
+                <div className={(loginState == 'Y' ? 'on' : '') + ' dimmed'} onClick={() => loginPopup('N')}></div>
             </div>
         )
     }
