@@ -15,7 +15,16 @@ class Member extends React.Component{
         }
     }
 
-    clickRadioState = function(state){
+    /**
+     * function, array function의 차이점
+     *  props에서 setState를 시켜줄 경우 undefinded 발생 
+     *  function은 바인딩을 시켜줘야한다.
+     * 하지만 array function은 자동적으로 바인딩을 시켜주기 때문에 에러가 발생하지않는다.
+     * 
+     * bind를 시켜주는 방법
+     * this.clickRadioState = this.clickRadioState.bind(this); 선언후 작성
+     */
+    clickRadioState = state => {
 
         console.log(state);
 
@@ -35,9 +44,19 @@ class Member extends React.Component{
 
         const { loginState, loginPopup } = this.props;
 
+        let style = {
+            login : {
+                label : {
+                    fontWeight: '600',
+                    marginRight: '20px'
+                }
+            }
+        }
+
+
         return(
             <div>
-                <div id="login-modal" className={ loginState == 'Y' ? 'on' : ''}>
+                <div id="login-modal" className={ (loginState == 'Y' ? 'on' : '') }>
                     <div class="modal-dialog">
 
                         <span className="close" onClick={() => loginPopup('N')}> &times;</span>
@@ -52,7 +71,7 @@ class Member extends React.Component{
                                     onClick={ () => this.clickRadioState('login')}
                                     checked={ popupState == 'login' ? 'checked' : ''}
                                     />
-                                <label for="login">로그인</label>
+                                <label className="select-radio" for="login">로그인</label>
 
                                 <input 
                                     type="radio" 
@@ -60,10 +79,10 @@ class Member extends React.Component{
                                     name="radio" 
                                     onClick={ () => this.clickRadioState('join')}
                                     checked={ popupState == 'join' ? 'checked' : ''} />
-                                <label for="join">회원가입</label>
+                                <label className="select-radio" for="join">회원가입</label>
                             </div>
                             <div className={ (popupState == 'login' ? 'on' : '') + " state"}>
-                                <Login changeState={ this.clickRadioState } loginState= { loginState }></Login>
+                                <Login clickRadioState={ this.clickRadioState } loginState= { loginState } styleLogin={style.login}></Login>
                             </div>
                             <div className={ (popupState == 'join' ? 'on' : '') + " state"}>
                                 <Join></Join>

@@ -1,4 +1,4 @@
-export var API_SERVER = '//jinseop-todo-list.herokuapp.com';
+export var API_SERVER = window.location.hostname.indexOf('localhost') > -1 ? '//localhost:5000' : '//jinseop-todo-list.herokuapp.com';
 
 // export var API_SERVER = '//13.124.87.240';
 

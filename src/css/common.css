@@ -396,7 +396,7 @@ div.radio-tab > input[type="radio"] {display: none;}
 /*
   windth 값을 지정해주지않으면 auto로 지정
 */
-div.radio-tab > label {
+div.radio-tab > label.select-radio {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 25px;
@@ -407,7 +407,7 @@ div.radio-tab > label {
   width: 50%;
 }
 
-div.radio-tab > label:hover {
+div.radio-tab > label.select-radio:hover {
   color:#2e9cdf;
   cursor: pointer;
 }
@@ -424,21 +424,12 @@ div.radio-tab > input[type="radio"]:checked + label{
   border-bottom: 1px solid #ffffff;
 }
 
-div.loginmodal-container > div.state {
-  visibility:hidden;
-  height: 0;
-}
-
-div.loginmodal-container > div.state.on{
-  visibility:visible;
-}
-
 div#login-modal{
   display: none;
 }
 
 div#login-modal.on{
-  display: block;
+  display: inline-block;
   position: absolute;
   z-index: 2;
   top:50%;
@@ -448,6 +439,17 @@ div#login-modal.on{
   margin-top: -25%;
   margin-left: -25%;
 }
+
+div#login-modal.on > div.modal-dialog > div.loginmodal-container > div.state {
+  visibility:hidden;
+  height: 0;
+}
+
+div#login-modal.on > div.modal-dialog > div.loginmodal-container > div.state.on{
+  visibility:inherit;
+}
+
+
 
 div#login-modal > div.modal-dialog{
   background-color: #fefefe;
@@ -483,4 +485,43 @@ div#login-modal > div.modal-dialog > span.close:hover {
   border: 0; 
   cursor:pointer; 
   opacity: 0.75; 
+}
+
+div.login-help > div.login-link > a{
+  text-decoration: none;
+}
+
+div.login-help > div.login-link > a[name="join"]{
+  color: #007AAE;
+}
+
+div.login-help > div.login-link > a[name="forgot"]{
+  color: #2e9cdf;
+}
+
+div.login-help > div.login-link > a:hover{
+  text-decoration: solid;
+  color: #F18C7E;
+  cursor: pointer;
+}
+
+/*
+  after : 생성된 콘텐츠의 끝 부분을 추가한다.
+  before : 생성된 콘텐츠의 시작 부분을 추가한다.
+
+  content : text 문자열을 추가할 값
+*/
+div.login-help > div.login-link > a::after{
+  content: '|';
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* 
+  first-child, last-child : 가상 클래스 
+  last-child : 마지막 요소에 대한 css 추가
+  first-child : 첫번째 요소에 대한 css 추가 
+ */
+div.login-help > div.login-link > a:last-child::after{
+  content: none;
 }
