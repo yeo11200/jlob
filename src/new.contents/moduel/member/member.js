@@ -11,7 +11,7 @@ class Member extends React.Component{
         console.log(props);
 
         this.state = {
-            popupState : 'login',
+            popupState : 'join',
         }
     }
 
@@ -56,7 +56,7 @@ class Member extends React.Component{
 
         return(
             <div>
-                <div id="login-modal" className={ (loginState == 'Y' ? 'on' : '') }>
+                <div id="login-modal" className={ (loginState == 'Y' ? 'on' : '') + ' on'}>
                     <div class="modal-dialog">
 
                         <span className="close" onClick={() => loginPopup('N')}> &times;</span>
@@ -82,10 +82,11 @@ class Member extends React.Component{
                                 <label className="select-radio" for="join">회원가입</label>
                             </div>
                             <div className={ (popupState == 'login' ? 'on' : '') + " state"}>
-                                <Login clickRadioState={ this.clickRadioState } loginState= { loginState } styleLogin={style.login}></Login>
+                                
+                                { popupState == 'login' ? <Login clickRadioState={ this.clickRadioState } loginState= { loginState } styleLogin={style.login}></Login> : ''}
                             </div>
                             <div className={ (popupState == 'join' ? 'on' : '') + " state"}>
-                                <Join></Join>
+                                { popupState == 'join' ? <Join clickRadioState={ this.clickRadioState } loginState= { loginState } ></Join> : ''}
                             </div>
                         </div>
                     </div>

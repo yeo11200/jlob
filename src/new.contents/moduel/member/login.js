@@ -47,7 +47,8 @@ class Login extends React.Component{
         if(this.props.loginState === 'N'){
             this.setState({
                 user: '',
-                pass: ''
+                pass: '',
+                loginErr : ''
             })
         }
     }
@@ -113,7 +114,7 @@ class Login extends React.Component{
     render(){
 
         const { clickRadioState, loginState } = this.props;
-        const { user, pass } = this.state;
+        const { user, pass, loginErr} = this.state;
 
         let style = {
             div : {
@@ -135,7 +136,7 @@ class Login extends React.Component{
                         type="text" 
                         name="user" 
                         id="user" 
-                        placeholder="Username" 
+                        placeholder="UserId" 
                         onChange={ (event) => this.changeLoginValue(event) } 
                         value={ user } 
                         onKeyDown={ (event) => this.keyPressLogin(event) } 
@@ -147,6 +148,9 @@ class Login extends React.Component{
                         color="text.primary" 
                         style={ style.span }> Pass : </Box>
                     <Input type="password" name="pass" placeholder="Password"  onChange={ (event) => this.changeLoginValue(event) }  value={ pass } onKeyDown={ (event) => this.keyPressLogin(event) }/>
+                </div>
+                <div className="member-error">
+                    { (loginErr !== '') ? <label>{ loginErr }</label> : ''}
                 </div>
                 <div style={style.div}>
                     <Button variant="outlined" color="secondary" onClick={ () => this.submitClickLogin() }>

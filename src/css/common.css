@@ -457,6 +457,7 @@ div#login-modal > div.modal-dialog{
   border: 1px solid #888;
   width: 100%; /* Could be more or less, depending on screen size */                          
   height: 100%;
+  overflow: auto;
 }
 
 div.dimmed.on{
@@ -523,5 +524,25 @@ div.login-help > div.login-link > a::after{
   first-child : 첫번째 요소에 대한 css 추가 
  */
 div.login-help > div.login-link > a:last-child::after{
+  content: none;
+}
+
+div.button-array > span > button.secondary{
+  border: 1px solid rgba(245, 0, 87, 0.5);
+  color: #f50057;
+}
+
+div.button-array > span > button.primary{
+  border: 1px solid rgba(63, 81, 181, 0.5);
+  color: #3f51b5;
+}
+
+div.button-array > span::after{
+  margin-right: 10px;
+  margin-left: 10px;
+  content: '|';
+}
+
+div.button-array > span:last-child::after{
   content: none;
 }

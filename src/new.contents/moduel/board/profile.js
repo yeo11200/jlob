@@ -22,6 +22,10 @@ class Profile extends React.Component{
 
     componentDidMount(){
         this.getProfileData();
+
+        Common.LoginFunction((res) => {
+            console.log(res);
+        }, 'data');
     }
 
     getProfileData = async () => {

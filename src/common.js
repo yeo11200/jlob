@@ -11,5 +11,26 @@ const REG_DATA = {
     'memeber_pass': /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/
 }
 
+const LoginFunction = (callback, data) => {
 
-export { REG_DATA }
+    if(data.LOGIN_ID !== ''){
+        callback(true);
+    }else{
+        callback(false);
+    }
+}
+
+/**
+ * esma 6 문법
+ * 구조분해 할당 
+ * team  = '' 선언시 데이터가 안넘어 올 경우, 초기값을 지정이 가능하다.
+ */
+const LoginData = ({ id, name, nickname, token, team  = ''}) => {
+
+}
+
+const LogOutData = () => {
+
+}
+
+export { REG_DATA, LoginFunction }
