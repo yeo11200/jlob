@@ -26,7 +26,6 @@ class Login extends React.Component{
     changeLoginValue = (event) => {
 
         let value = event.currentTarget;
-
         /**
          * event를 parameter로 받고
          * event.name과 event.value로 사용을 해준다.
@@ -84,7 +83,6 @@ class Login extends React.Component{
         }
 
         axios.post(Common.API_SERVER+'/users/login', login).then(res => {
-            console.log(res);
 
             let items = res.data;
 

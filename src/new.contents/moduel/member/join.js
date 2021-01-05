@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'
+import axios from 'axios'
 
 import * as Common from '../../../common'
 import * as Fun from '../../../fun'
-import { Input, Box, Button } from '@material-ui/core';
+import { Input, Box, Button, Select, MenuItem } from '@material-ui/core';
 
 class Join extends React.Component{
 
@@ -12,7 +13,10 @@ class Join extends React.Component{
 
         this.state={
             'user' : '',
-            'userErr' : '',
+            'userErr' : {
+                'status' : '',
+                'message' : ''
+            },
             'pass' : '',
             'passConfirm' : '',
             'passErr' : '',
@@ -20,9 +24,24 @@ class Join extends React.Component{
             'nameErr' : '',
             'nickname' : '',
             'nickErr' : '',
+            'emailArr' : [
+                {'email' : 'gmail.com', 'value' : 'google'}, 
+                {'email' : 'naver.com', 'value' : 'naver'},
+                {'email' : 'nate.com', 'value' : 'nate'}, 
+                {'email' : 'hanmail.net', 'value' : 'daum'},
+                {'email' : '', 'value' : '직접입력'}
+            ],
+            'email' : {
+                'email' : 'naver.com',
+                'type' : 'naver'
+            }
         }
 
         this.submitClickJoin = this.submitClickJoin.bind(this);
+
+        this.overlapIdCheck = this.overlapIdCheck.bind(this);
+
+        this.changeJoinValue = this.changeJoinValue.bind(this);
     }
 
     componentDidMount(){
@@ -43,7 +62,7 @@ class Join extends React.Component{
 
     submitClickJoin = () => {
 
-        const { user, pass, passConfirm, name, nickname} = this.state;
+        const { user, userErr, pass, passConfirm, name, nickname} = this.state;
         
         if(nickname.length < 6 || nickname.length > 12){
             Fun.toastUi('닉네임을 6 ~ 12자 사이로 입력해주세요.');
@@ -78,14 +97,87 @@ class Join extends React.Component{
             return;
         }
 
+        this.overlapIdCheck(user, 'click');
 
+        if(userErr.status === 'fail'){
+            Fun.toastUi('사용중인 아이디 입니다. (2)');
+            return;
+        }
+
+    }
+
+
+    overlapIdCheck = async (event, eventName = null) => {
+
+        let data = null;
+        
+        if(eventName === 'click'){
+            data = event;
+        }else{
+            data = event.currentTarget.value;
+        }
+
+        if(data.length < 3){
+            return;
+        }
+
+        let result = {
+            'id': data,
+            'type': 'join'
+        };
+
+        await axios.post(Common.API_SERVER+'/users/find-id', result).then((res) => {
+
+            const items = res.data;
+
+            const resCode = items.status;
+
+            if(resCode === 200){
+
+                let error = {};
+
+                if(items.message.data.cnt >= 1){
+                    Fun.toastUi(items.message.message);
+
+                    error = {
+                        'status' : 'fail',
+                        'message' : items.message.message
+                    }
+                }else{
+                    error = {
+                        'status' : 'succ',
+                        'message' : items.message.message
+                    }
+
+                    this.setState({user : data});
+                }
+
+                this.setState({userErr : error});
+
+            }else{
+                Fun.toastUi(items.message.message);
+                this.setState({userErr : ''});
+            }
+
+        })
+    }
+
+    changeSelectEmail = (data) => {
+        console.log(data);
+
+        this.setState({
+            'email' : {
+                'email' : data.email,
+                'type' : data.value
+            }
+        })
     }
 
     render(){
 
         const { clickRadioState, loginState } = this.props;
 
-        const { userErr, passErr, nameErr, nickErr} = this.state;
+        const { passErr, nameErr, nickErr, emailArr, email} = this.state;
         let style = {
             'top-div' : {
                 textAlign : 'center',
@@ -109,8 +201,24 @@ class Join extends React.Component{
                         name="user"
                         placeholder="User"
                         autoComplete="off"
-                        onChange={ (event) => this.changeJoinValue(event)}></Input>
-                    { (userErr !== '') ? <label>{ userErr } </label> : ''}
+                        onChange={ (event) => this.overlapIdCheck(event) }></Input>
+                    {/* { (userErr !== '') ? <label>{ userErr } </label> : ''} */}
+                    <Select labelId="label" id="select" value={email.type}>
+                        {
+                            emailArr.map((value, index) => {
+                                return <MenuItem value={value.value} onClick={() => { this.changeSelectEmail(value)}}>{value.value}</MenuItem>
+                            })
+                        }
+                    </Select>
+                    {
+                    (email.type === '직접입력') ? 
+                                    <Input 
+                                    name="email"
+                                    placeholder="Email"
+                                    autoComplete="off"
+                                    onChange={ (event) => this.overlapIdCheck(event) }></Input> : '' 
+                    }
+                    
                 </div>
 
                 <div style={ style["div"]} className="member-error">
