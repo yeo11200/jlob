@@ -49,6 +49,35 @@ class Join extends React.Component{
     }
 
     componentWillReceiveProps(){
+        if(this.props.loginState === 'N'){
+            this.setState({
+                'user' : '',
+                'userErr' : {
+                    'status' : '',
+                    'message' : ''
+                },
+                'pass' : '',
+                'passConfirm' : '',
+                'passErr' : '',
+                'name' : '',
+                'nameErr' : '',
+                'nickname' : '',
+                'nickErr' : '',
+                'id' : '',
+                'emailArr' : [
+                    {'email' : 'gmail.com', 'value' : 'google'}, 
+                    {'email' : 'naver.com', 'value' : 'naver'},
+                    {'email' : 'nate.com', 'value' : 'nate'}, 
+                    {'email' : 'hanmail.net', 'value' : 'daum'},
+                    {'email' : '', 'value' : '직접입력'}
+                ],
+                'email' : {
+                    'email' : 'naver.com',
+                    'type' : 'naver'
+                }
+            })
+        }
+
     }
 
     changeJoinValue = (event) => {
@@ -62,7 +91,7 @@ class Join extends React.Component{
 
     submitClickJoin = () => {
 
-        const { user, userErr, pass, passConfirm, name, nickname} = this.state;
+        const { id, userErr, pass, passConfirm, name, nickname, user} = this.state;
         
         if(nickname.length < 6 || nickname.length > 12){
             Fun.toastUi('닉네임을 6 ~ 12자 사이로 입력해주세요.');
@@ -92,22 +121,47 @@ class Join extends React.Component{
          * 입력받은 회원에 대한 조건 
          * email 형식이 아닐 경우 조건 변경
          */
-        if(Common.REG_DATA.member_id.test(user) === false){
+        if(Common.REG_DATA.member_id.test(id) === false){
             Fun.toastUi('아이디 형식이 다릅니다.');
             return;
         }
 
         this.overlapIdCheck(user, 'click');
 
+        console.log(user);
+
         if(userErr.status === 'fail'){
             Fun.toastUi('사용중인 아이디 입니다. (2)');
             return;
-        }
+        }else{
 
+            let result = {
+                'id' : id,
+                'name' : name,
+                'nickname' : nickname,
+                'pw' : pass,
+            }
+
+            axios.post(Common.API_SERVER+'/users/join', result).then( res => {
+                const items = res.data;
+
+                const resCode = items.status;
+
+                if(resCode === 200){
+                    Fun.toastUi('회원가입이 완료되었습니다. 이메일을 인증을 해주세요');
+                    this.props.loginState = 'N';
+
+                }else{
+                    Fun.toastUi(items.message);
+                    return;
+                }
+
+            })
+        }
     }
 
 
-    overlapIdCheck = async (event, eventName = null) => {
+    overlapIdCheck = async (event, eventName = null, state = null) => {
 
         let data = null;
         
@@ -117,14 +171,18 @@ class Join extends React.Component{
             data = event.currentTarget.value;
         }
 
-        if(data.length < 3){
-            return;
-        }
-
         let result = {
-            'id': data,
+            'id': data+'@'+this.state.email.email,
             'type': 'join'
         };
+        
+
+        console.log(result);
+
+        if(Common.REG_DATA.member_id.test(result.id) === false){
+            Fun.toastUi('아이디 형식이 다릅니다.');
+            return;
+        }
 
         await axios.post(Common.API_SERVER+'/users/find-id', result).then((res) => {
 
@@ -149,7 +207,13 @@ class Join extends React.Component{
                         'message' : items.message.message
                     }
 
-                    this.setState({user : data});
+                    this.setState(
+                        {
+                            id : result.id,
+                            user : data
+                        
+                        }
+                    );
                 }
 
                 this.setState({userErr : error});
@@ -162,6 +226,18 @@ class Join extends React.Component{
         })
     }
 
+    changeEmailJoin = (event) => {
+
+        let data = event.currentTarget;
+
+        this.setState({
+            'email' : {
+                'email' : data.value,
+                'type' : this.state.email.type
+            }
+        })
+    }
+
     changeSelectEmail = (data) => {
         console.log(data);
 
@@ -169,7 +245,8 @@ class Join extends React.Component{
             'email' : {
                 'email' : data.email,
                 'type' : data.value
-            }
+            },
+            'id' : this.state.user
         })
     }
 
@@ -177,7 +254,8 @@ class Join extends React.Component{
 
         const { clickRadioState, loginState } = this.props;
 
-        const { passErr, nameErr, nickErr, emailArr, email} = this.state;
+        const { passErr, nameErr, nickErr, emailArr, email } = this.state;
+
         let style = {
             'top-div' : {
                 textAlign : 'center',
@@ -201,7 +279,7 @@ class Join extends React.Component{
                         name="user"
                         placeholder="User"
                         autoComplete="off"
-                        onChange={ (event) => this.overlapIdCheck(event) }></Input>
+                        onChange={ (event) => this.overlapIdCheck(event, '', 'join') }></Input>
                     {/* { (userErr !== '') ? <label>{ userErr } </label> : ''} */}
                     <Select labelId="label" id="select" value={email.type}>
                         {
@@ -212,11 +290,12 @@ class Join extends React.Component{
                     </Select>
                     {
                     (email.type === '직접입력') ? 
-                                    <Input 
-                                    name="email"
-                                    placeholder="Email"
-                                    autoComplete="off"
-                                    onChange={ (event) => this.overlapIdCheck(event) }></Input> : '' 
+                        <Input 
+                            name="email"
+                            placeholder="Email"
+                            autoComplete="off"
+                            value={email.value}
+                            onChange={ (event) => this.changeEmailJoin(event, '', 'email') }></Input> : '' 
                     }
                     
                 </div>

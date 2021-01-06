@@ -41,6 +41,7 @@ class Login extends React.Component{
      * props가 update가 될 경우 이벤트가 발생한다.
      */
     componentWillReceiveProps(){
+        
         console.log(this.props);
 
         if(this.props.loginState === 'N'){
